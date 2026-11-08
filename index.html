@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rita Momo Mart - Order Menu</title>
+  <style>
+    :root {
+      --bg: #141414;
+      --card-bg: #1f1f1f;
+      --card-border: #2d2d2d;
+      --yellow: #f5b301;
+      --red: #d32f2f;
+      --whatsapp: #25d366;
+      --text: #ffffff;
+      --text-muted: #b0b0b0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      padding-bottom: 125px;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(180deg, #222 0%, #141414 100%);
+      padding: 16px;
+      text-align: center;
+      border-bottom: 2px solid var(--yellow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-logo {
+      width: 75px;
+      height: 75px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--yellow);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      font-size: 0.8rem;
+      color: #ff5252;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* Category Filter Tabs */
+    .categories {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      background-color: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .categories::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-btn {
+      background: var(--card-bg);
+      color: var(--text-muted);
+      border: 1px solid var(--card-border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .cat-btn.active {
+      background: var(--yellow);
+      color: #000;
+      font-weight: 700;
+      border-color: var(--yellow);
+    }
+
+    /* Menu Items Container */
+    .menu-container {
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .item-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .item-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .item-cat-tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Variant Rows inside Card */
+    .variant-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #181818;
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
+
+    .variant-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .variant-name {
+      font-size: 0.85rem;
+      color: #ddd;
+    }
+
+    .variant-price {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--yellow);
+    }
+
+    /* Counter */
+    .counter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #2b2b2b;
+      border-radius: 6px;
+      padding: 2px 6px;
+    }
+
+    .counter button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: bold;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .counter span {
+      font-size: 0.9rem;
+      font-weight: 700;
+      min-width: 16px;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* Sticky Bottom Order Bar */
+    .cart-drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #181818;
+      border-top: 2px solid var(--yellow);
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.7);
+      z-index: 100;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .input-row input {
+      flex: 1;
+      background: #262626;
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .input-row input:focus {
+      border-color: var(--yellow);
+    }
+
+    .action-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-box .items-count {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .total-box .grand-total {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--yellow);
+    }
+
+    .order-btn {
+      background-color: var(--whatsapp);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .order-btn:disabled {
+      background-color: #333333;
+      color: #666666;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Brand Header -->
+  <header>
+    <img src="Logo.png" alt="Rita Momo Mart Logo" class="brand-logo" onerror="this.style.display='none'" />
+    <div>
+      <h1>Rita Momo Mart</h1>
+      <p>FRESH • HYGIENE • DELICIOUS</p>
+    </div>
+  </header>
+
+  <!-- Category Nav -->
+  <div class="categories">
+    <button class="cat-btn active" onclick="filterMenu('All')">All</button>
+    <button class="cat-btn" onclick="filterMenu('Veg Momos')">Veg Momos</button>
+    <button class="cat-btn" onclick="filterMenu('Chicken Momos')">Chicken Momos</button>
+    <button class="cat-btn" onclick="filterMenu('Snacks')">Snacks</button>
+    <button class="cat-btn" onclick="filterMenu('Beverage')">Beverage</button>
+  </div>
+
+  <!-- Menu List -->
+  <div class="menu-container" id="menu-container"></div>
+
+  <!-- Bottom Drawer -->
+  <div class="cart-drawer">
+    <div class="input-row">
+      <input type="text" id="cust-name" placeholder="Aapka Naam (Customer Name)" />
+      <input type="text" id="cust-table" placeholder="Table No / Takeaway" />
+    </div>
+    <div class="action-row">
+      <div class="total-box">
+        <div class="items-count" id="cart-count">0 items selected</div>
+        <div class="grand-total" id="cart-total">₹0</div>
+      </div>
+      <button class="order-btn" id="order-btn" onclick="placeOrderWhatsApp()" disabled>
+        Order on WhatsApp 📲
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Business WhatsApp Number
+    const WHATSAPP_NUM = "919485949685";
+
+    // Complete Menu Database
+    const menuData = [
+      // Veg Momos
+      {
+        id: "vm_steam",
+        name: "Steam Momos (Veg)",
+        category: "Veg Momos",
+        variants: [
+          { key: "vm_steam_5", label: "5 Pcs", price: 20 },
+          { key: "vm_steam_10", label: "10 Pcs", price: 40 }
+        ]
+      },
+      {
+        id: "vm_fried",
+        name: "Fried Momos (Veg)",
+        category: "Veg Momos",
+        variants: [
+          { key: "vm_fried_5", label: "5 Pcs", price: 25 },
+          { key: "vm_fried_10", label: "10 Pcs", price: 50 }
+        ]
+      },
+      {
+        id: "vm_kurkure",
+        name: "Kurkure Momos (Veg)",
+        category: "Veg Momos",
+        variants: [
+          { key: "vm_kurkure_5", label: "5 Pcs", price: 35 },
+          { key: "vm_kurkure_10", label: "10 Pcs", price: 70 }
+        ]
+      },
+      {
+        id: "vm_tandoori",
+        name: "Tandoori Momos (Veg)",
+        category: "Veg Momos",
+        variants: [
+          { key: "vm_tandoori_5", label: "5 Pcs", price: 35 },
+          { key: "vm_tandoori_10", label: "10 Pcs", price: 70 }
+        ]
+      },
+
+      // Chicken Momos
+      {
+        id: "cm_steam",
+        name: "Steam Momos (Chicken)",
+        category: "Chicken Momos",
+        variants: [
+          { key: "cm_steam_5", label: "5 Pcs", price: 30 },
+          { key: "cm_steam_10", label: "10 Pcs", price: 60 }
+        ]
+      },
+      {
+        id: "cm_fried",
+        name: "Fried Momos (Chicken)",
+        category: "Chicken Momos",
+        variants: [
+          { key: "cm_fried_5", label: "5 Pcs", price: 35 },
+          { key: "cm_fried_10", label: "10 Pcs", price: 70 }
+        ]
+      },
+      {
+        id: "cm_kurkure",
+        name: "Kurkure Momos (Chicken)",
+        category: "Chicken Momos",
+        variants: [
+          { key: "cm_kurkure_5", label: "5 Pcs", price: 40 },
+          { key: "cm_kurkure_10", label: "10 Pcs", price: 80 }
+        ]
+      },
+      {
+        id: "cm_tandoori",
+        name: "Tandoori Momos (Chicken)",
+        category: "Chicken Momos",
+        variants: [
+          { key: "cm_tandoori_5", label: "5 Pcs", price: 45 },
+          { key: "cm_tandoori_10", label: "10 Pcs", price: 90 }
+        ]
+      },
+
+      // Snacks
+      {
+        id: "sn_burger",
+        name: "Burger (Veg. Tikki)",
+        category: "Snacks",
+        variants: [{ key: "sn_burger_1", label: "1 Pc", price: 20 }]
+      },
+      {
+        id: "sn_eggroll",
+        name: "Egg Roll",
+        category: "Snacks",
+        variants: [
+          { key: "sn_eggroll_1", label: "1 Egg", price: 30 },
+          { key: "sn_eggroll_2", label: "2 Egg", price: 35 }
+        ]
+      },
+      {
+        id: "sn_springroll",
+        name: "Veg Spring Roll",
+        category: "Snacks",
+        variants: [{ key: "sn_springroll_1", label: "1 Pc", price: 15 }]
+      },
+      {
+        id: "sn_chowmin",
+        name: "Chowmin",
+        category: "Snacks",
+        variants: [
+          { key: "sn_chowmin_half", label: "Half", price: 20 },
+          { key: "sn_chowmin_full", label: "Full", price: 40 }
+        ]
+      },
+      {
+        id: "sn_pakoda",
+        name: "Pakoda",
+        category: "Snacks",
+        variants: [{ key: "sn_pakoda_1", label: "1 Pc", price: 5 }]
+      },
+      {
+        id: "sn_onionpakoda",
+        name: "Onion Pakoda (Piyaji)",
+        category: "Snacks",
+        variants: [{ key: "sn_onionpakoda_100", label: "100g", price: 20 }]
+      },
+
+      // Beverage & Others
+      {
+        id: "bv_water",
+        name: "Packaged Drinking Water",
+        category: "Beverage",
+        variants: [{ key: "bv_water_1", label: "MRP Rate", price: 10 }]
+      },
+      {
+        id: "bv_colddrink",
+        name: "Cold Drinks",
+        category: "Beverage",
+        variants: [{ key: "bv_colddrink_1", label: "Bottle (MRP)", price: 20 }]
+      },
+      {
+        id: "bv_chips",
+        name: "Chips Packet",
+        category: "Beverage",
+        variants: [{ key: "bv_chips_1", label: "MRP Packet", price: 10 }]
+      },
+      {
+        id: "bv_biscuits",
+        name: "Biscuits",
+        category: "Beverage",
+        variants: [{ key: "bv_biscuits_1", label: "MRP Packet", price: 10 }]
+      },
+      {
+        id: "bv_chocolate",
+        name: "Chocolate",
+        category: "Beverage",
+        variants: [{ key: "bv_chocolate_1", label: "MRP Unit", price: 10 }]
+      }
+    ];
+
+    let cart = {};
+    let activeCategory = "All";
+
+    function renderMenu() {
+      const container = document.getElementById("menu-container");
+      container.innerHTML = "";
+
+      const filtered = activeCategory === "All"
+        ? menuData
+        : menuData.filter(item => item.category === activeCategory);
+
+      filtered.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "item-card";
+
+        let variantsHtml = "";
+        item.variants.forEach(v => {
+          const qty = cart[v.key] ? cart[v.key].qty : 0;
+          variantsHtml += `
+            <div class="variant-row">
+              <div class="variant-info">
+                <span class="variant-name">${v.label}</span>
+                <span class="variant-price">₹${v.price}</span>
+              </div>
+              <div class="counter">
+                <button onclick="updateCart('${item.name}', '${v.key}', '${v.label}', ${v.price}, -1)">−</button>
+                <span id="qty-${v.key}">${qty}</span>
+                <button onclick="updateCart('${item.name}', '${v.key}', '${v.label}', ${v.price}, 1)">+</button>
+              </div>
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="item-header">
+            <div>
+              <div class="item-title">${item.name}</div>
+              <div class="item-cat-tag">${item.category}</div>
+            </div>
+          </div>
+          ${variantsHtml}
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterMenu(cat) {
+      activeCategory = cat;
+      document.querySelectorAll(".cat-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.innerText === cat);
+      });
+      renderMenu();
+    }
+
+    function updateCart(itemName, variantKey, variantLabel, price, delta) {
+      if (!cart[variantKey]) {
+        cart[variantKey] = {
+          name: itemName,
+          variant: variantLabel,
+          price: price,
+          qty: 0
+        };
+      }
+
+      cart[variantKey].qty += delta;
+
+      if (cart[variantKey].qty <= 0) {
+        delete cart[variantKey];
+      }
+
+      const qtySpan = document.getElementById(`qty-${variantKey}`);
+      if (qtySpan) {
+        qtySpan.innerText = cart[variantKey] ? cart[variantKey].qty : 0;
+      }
+
+      updateTotals();
+    }
+
+    function updateTotals() {
+      let grandTotal = 0;
+      let totalQty = 0;
+
+      for (let k in cart) {
+        grandTotal += cart[k].price * cart[k].qty;
+        totalQty += cart[k].qty;
+      }
+
+      document.getElementById("cart-count").innerText = `${totalQty} items selected`;
+      document.getElementById("cart-total").innerText = `₹${grandTotal}`;
+      document.getElementById("order-btn").disabled = totalQty === 0;
+    }
+
+    function placeOrderWhatsApp() {
+      const name = document.getElementById("cust-name").value.trim() || "Walk-in Customer";
+      const table = document.getElementById("cust-table").value.trim() || "Takeaway / Dine-in";
+
+      let orderLines = "";
+      let total = 0;
+
+      for (let k in cart) {
+        const item = cart[k];
+        const lineCost = item.price * item.qty;
+        total += lineCost;
+        orderLines += `• ${item.name} (${item.variant}) x ${item.qty} = ₹${lineCost}\n`;
+      }
+
+      const orderMsg = 
+`*NEW ORDER: Rita Momo Mart*
+━━━━━━━━━━━━━━━━━━
+*Customer:* ${name}
+*Table / Type:* ${table}
+━━━━━━━━━━━━━━━━━━
+*Items Ordered:*
+${orderLines}━━━━━━━━━━━━━━━━━━
+*Grand Total: ₹${total}*
+
+_Please confirm and prepare my order!_`;
+
+      const encoded = encodeURIComponent(orderMsg);
+      window.open(`https://wa.me/${WHATSAPP_NUM}?text=${encoded}`, '_blank');
+    }
+
+    // Run on load
+    renderMenu();
+  </script>
+</body>
+  </html>
+  
