@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rita Momo Mart - Order Menu</title>
+  <title>Rita Momo Mart - ডিজিটাল মেনু</title>
   <style>
     :root {
       --bg: #141414;
@@ -20,61 +20,54 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Bengali", sans-serif;
     }
 
     body {
       background-color: var(--bg);
       color: var(--text);
-      padding-bottom: 125px;
+      padding-bottom: 120px;
     }
 
-    /* Header */
     header {
-      background: linear-gradient(180deg, #222 0%, #141414 100%);
-      padding: 16px;
+      background: linear-gradient(180deg, #1f1f1f 0%, #141414 100%);
+      padding: 20px 16px;
       text-align: center;
       border-bottom: 2px solid var(--yellow);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
     }
 
     .brand-logo {
-      width: 75px;
-      height: 75px;
+      width: 85px;
+      height: 85px;
       object-fit: contain;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+      margin-bottom: 8px;
     }
 
     header h1 {
-      font-size: 1.4rem;
-      font-weight: 800;
       color: var(--yellow);
+      font-size: 1.5rem;
       letter-spacing: 0.5px;
-      text-transform: uppercase;
+      margin-bottom: 4px;
     }
 
     header p {
+      color: var(--red);
       font-size: 0.8rem;
-      color: #ff5252;
       font-weight: 700;
       letter-spacing: 1px;
     }
 
-    /* Category Filter Tabs */
     .categories {
       display: flex;
+      overflow-x: auto;
       gap: 8px;
       padding: 12px 16px;
-      overflow-x: auto;
-      scrollbar-width: none;
       background-color: var(--bg);
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 10;
       border-bottom: 1px solid var(--card-border);
+      scrollbar-width: none;
     }
 
     .categories::-webkit-scrollbar {
@@ -82,183 +75,182 @@
     }
 
     .cat-btn {
-      background: var(--card-bg);
+      background: #222222;
+      border: 1px solid #333333;
       color: var(--text-muted);
-      border: 1px solid var(--card-border);
-      padding: 6px 14px;
+      padding: 7px 14px;
       border-radius: 20px;
-      font-size: 0.85rem;
       white-space: nowrap;
+      font-size: 0.85rem;
       cursor: pointer;
-      font-weight: 500;
-      transition: all 0.2s;
     }
 
     .cat-btn.active {
-      background: var(--yellow);
+      background-color: var(--yellow);
       color: #000;
       font-weight: 700;
       border-color: var(--yellow);
     }
 
-    /* Menu Items Container */
     .menu-container {
-      padding: 12px 16px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .item-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 12px;
-      padding: 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .item-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      padding: 14px;
     }
 
     .item-title {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 600;
-      color: #fff;
+      margin-bottom: 4px;
     }
 
-    .item-cat-tag {
-      font-size: 0.7rem;
+    .item-cat {
+      font-size: 0.75rem;
       color: var(--text-muted);
-      margin-top: 2px;
+      margin-bottom: 10px;
     }
 
-    /* Variant Rows inside Card */
-    .variant-row {
+    .portion-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #181818;
       padding: 8px 10px;
+      background: #282828;
       border-radius: 8px;
+      margin-top: 6px;
     }
 
-    .variant-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .portion-label {
+      font-size: 0.9rem;
+      font-weight: 500;
     }
 
-    .variant-name {
-      font-size: 0.85rem;
-      color: #ddd;
-    }
-
-    .variant-price {
-      font-size: 0.95rem;
-      font-weight: 700;
+    .portion-price {
       color: var(--yellow);
+      font-weight: 700;
+      margin-left: 8px;
     }
 
-    /* Counter */
     .counter {
       display: flex;
       align-items: center;
-      gap: 10px;
-      background: #2b2b2b;
-      border-radius: 6px;
-      padding: 2px 6px;
+      gap: 12px;
     }
 
     .counter button {
-      background: none;
+      background: #3a3a3a;
       border: none;
       color: #fff;
-      font-size: 1.2rem;
-      font-weight: bold;
-      width: 26px;
-      height: 26px;
-      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
 
-    .counter span {
-      font-size: 0.9rem;
+    .counter button:active {
+      background: var(--yellow);
+      color: #000;
+    }
+
+    .qty-display {
       font-weight: 700;
-      min-width: 16px;
+      min-width: 18px;
       text-align: center;
-      color: #fff;
     }
 
-    /* Sticky Bottom Order Bar */
     .cart-drawer {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: #181818;
+      background: #1c1c1c;
       border-top: 2px solid var(--yellow);
       padding: 12px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.7);
       z-index: 100;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.5);
     }
 
-    .input-row {
+    .customer-inputs {
       display: flex;
       gap: 8px;
+      margin-bottom: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .input-row input {
-      flex: 1;
-      background: #262626;
-      border: 1px solid var(--card-border);
+    .customer-inputs input {
+      background: #2b2b2b;
+      border: 1px solid #444;
       color: #fff;
-      padding: 9px 12px;
-      border-radius: 8px;
+      padding: 8px 12px;
+      border-radius: 6px;
       font-size: 0.85rem;
       outline: none;
     }
 
-    .input-row input:focus {
+    .customer-inputs input:focus {
       border-color: var(--yellow);
     }
 
-    .action-row {
+    .input-name {
+      flex: 2;
+    }
+
+    .input-detail {
+      flex: 1.2;
+    }
+
+    .cart-action {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .total-box .items-count {
+    .total-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .total-count {
       font-size: 0.75rem;
       color: var(--text-muted);
     }
 
-    .total-box .grand-total {
+    .total-amount {
       font-size: 1.25rem;
       font-weight: 800;
       color: var(--yellow);
     }
 
     .order-btn {
-      background-color: var(--whatsapp);
+      background: var(--whatsapp);
       color: #000;
+      font-weight: 700;
       border: none;
+      padding: 12px 20px;
       border-radius: 8px;
-      padding: 10px 18px;
-      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       font-size: 0.95rem;
       cursor: pointer;
-      transition: opacity 0.2s;
     }
 
     .order-btn:disabled {
@@ -274,323 +266,361 @@
   <header>
     <img src="Logo.png" alt="Rita Momo Mart Logo" class="brand-logo" onerror="this.style.display='none'" />
     <div>
-      <h1>Rita Momo Mart</h1>
+      <h1>রিতা মোমো মার্ট</h1>
       <p>FRESH • HYGIENE • DELICIOUS</p>
     </div>
   </header>
 
   <!-- Category Nav -->
   <div class="categories">
-    <button class="cat-btn active" onclick="filterMenu('All')">All</button>
-    <button class="cat-btn" onclick="filterMenu('Veg Momos')">Veg Momos</button>
-    <button class="cat-btn" onclick="filterMenu('Chicken Momos')">Chicken Momos</button>
-    <button class="cat-btn" onclick="filterMenu('Snacks')">Snacks</button>
-    <button class="cat-btn" onclick="filterMenu('Beverage')">Beverage</button>
+    <button class="cat-btn active" onclick="filterCat('all', this)">সব</button>
+    <button class="cat-btn" onclick="filterCat('momo', this)">মোমো</button>
+    <button class="cat-btn" onclick="filterCat('snacks', this)">স্ন্যাক্স ও পাকোড়া</button>
+    <button class="cat-btn" onclick="filterCat('fastfood', this)">চাউমিন ও রোল</button>
+    <button class="cat-btn" onclick="filterCat('others', this)">অন্যান্য</button>
   </div>
 
   <!-- Menu List -->
-  <div class="menu-container" id="menu-container"></div>
+  <div class="menu-container" id="menu-list"></div>
 
   <!-- Bottom Drawer -->
   <div class="cart-drawer">
-    <div class="input-row">
-      <input type="text" id="cust-name" placeholder="Aapka Naam (Customer Name)" />
-      <input type="text" id="cust-table" placeholder="Table No / Takeaway" />
+    <div class="customer-inputs">
+      <input type="text" id="cust-name" class="input-name" placeholder="আপনার নাম..." />
+      <input type="text" id="cust-detail" class="input-detail" placeholder="টেবিল / ফোন নং..." />
     </div>
-    <div class="action-row">
+    <div class="cart-action">
       <div class="total-box">
-        <div class="items-count" id="cart-count">0 items selected</div>
-        <div class="grand-total" id="cart-total">₹0</div>
+        <span class="total-count" id="item-count">০ টি আইটেম</span>
+        <span class="total-amount" id="total-price">₹০</span>
       </div>
-      <button class="order-btn" id="order-btn" onclick="placeOrderWhatsApp()" disabled>
-        Order on WhatsApp 📲
+      <button class="order-btn" id="order-btn" onclick="sendWhatsAppOrder()" disabled>
+        হোয়াটসঅ্যাপে অর্ডার করুন 📲
       </button>
     </div>
   </div>
 
   <script>
-    // Business WhatsApp Number
-    const WHATSAPP_NUM = "919485949685";
+    const WHATSAPP_NUMBER = "919485949685";
 
-    // Complete Menu Database
     const menuData = [
-      // Veg Momos
       {
-        id: "vm_steam",
-        name: "Steam Momos (Veg)",
-        category: "Veg Momos",
-        variants: [
-          { key: "vm_steam_5", label: "5 Pcs", price: 20 },
-          { key: "vm_steam_10", label: "10 Pcs", price: 40 }
+        id: "v_steam",
+        cat: "momo",
+        name: "ভেজ স্টিম মোমো",
+        catLabel: "মোমো",
+        portions: [
+          { key: "vm_s_half", label: "হাফ (৫ পিস)", price: 20 },
+          { key: "vm_s_full", label: "ফুল (১০ পিস)", price: 40 }
         ]
       },
       {
-        id: "vm_fried",
-        name: "Fried Momos (Veg)",
-        category: "Veg Momos",
-        variants: [
-          { key: "vm_fried_5", label: "5 Pcs", price: 25 },
-          { key: "vm_fried_10", label: "10 Pcs", price: 50 }
+        id: "v_fried",
+        cat: "momo",
+        name: "ভেজ ফ্রাইড মোমো",
+        catLabel: "মোমো",
+        portions: [
+          { key: "vm_f_half", label: "হাফ (৫ পিস)", price: 25 },
+          { key: "vm_f_full", label: "ফুল (১০ পিস)", price: 50 }
         ]
       },
       {
-        id: "vm_kurkure",
-        name: "Kurkure Momos (Veg)",
-        category: "Veg Momos",
-        variants: [
-          { key: "vm_kurkure_5", label: "5 Pcs", price: 35 },
-          { key: "vm_kurkure_10", label: "10 Pcs", price: 70 }
+        id: "v_kurkure",
+        cat: "momo",
+        name: "ভেজ কুরকুরে মোমো",
+        catLabel: "মোমো",
+        portions: [
+          { key: "vm_k_half", label: "হাফ (৫ পিস)", price: 35 },
+          { key: "vm_k_full", label: "ফুল (১০ পিস)", price: 70 }
         ]
       },
       {
-        id: "vm_tandoori",
-        name: "Tandoori Momos (Veg)",
-        category: "Veg Momos",
-        variants: [
-          { key: "vm_tandoori_5", label: "5 Pcs", price: 35 },
-          { key: "vm_tandoori_10", label: "10 Pcs", price: 70 }
-        ]
-      },
-
-      // Chicken Momos
-      {
-        id: "cm_steam",
-        name: "Steam Momos (Chicken)",
-        category: "Chicken Momos",
-        variants: [
-          { key: "cm_steam_5", label: "5 Pcs", price: 30 },
-          { key: "cm_steam_10", label: "10 Pcs", price: 60 }
+        id: "c_steam",
+        cat: "momo",
+        name: "চিকেন স্টিম মোমো",
+        catLabel: "মোমো",
+        portions: [
+          { key: "cm_s_half", label: "হাফ (৫ পিস)", price: 30 },
+          { key: "cm_s_full", label: "ফুল (১০ পিস)", price: 60 }
         ]
       },
       {
-        id: "cm_fried",
-        name: "Fried Momos (Chicken)",
-        category: "Chicken Momos",
-        variants: [
-          { key: "cm_fried_5", label: "5 Pcs", price: 35 },
-          { key: "cm_fried_10", label: "10 Pcs", price: 70 }
+        id: "c_fried",
+        cat: "momo",
+        name: "চিকেন ফ্রাইড মোমো",
+        catLabel: "মোমো",
+        portions: [
+          { key: "cm_f_half", label: "হাফ (৫ পিস)", price: 35 },
+          { key: "cm_f_full", label: "ফুল (১০ পিস)", price: 70 }
         ]
       },
       {
-        id: "cm_kurkure",
-        name: "Kurkure Momos (Chicken)",
-        category: "Chicken Momos",
-        variants: [
-          { key: "cm_kurkure_5", label: "5 Pcs", price: 40 },
-          { key: "cm_kurkure_10", label: "10 Pcs", price: 80 }
+        id: "c_kurkure",
+        cat: "momo",
+        name: "চিকেন কুরকুরে মোমো",
+        catLabel: "মোমো",
+        portions: [
+          { key: "cm_k_half", label: "হাফ (৫ পিস)", price: 40 },
+          { key: "cm_k_full", label: "ফুল (১০ পিস)", price: 80 }
         ]
       },
       {
-        id: "cm_tandoori",
-        name: "Tandoori Momos (Chicken)",
-        category: "Chicken Momos",
-        variants: [
-          { key: "cm_tandoori_5", label: "5 Pcs", price: 45 },
-          { key: "cm_tandoori_10", label: "10 Pcs", price: 90 }
-        ]
-      },
-
-      // Snacks
-      {
-        id: "sn_burger",
-        name: "Burger (Veg. Tikki)",
-        category: "Snacks",
-        variants: [{ key: "sn_burger_1", label: "1 Pc", price: 20 }]
-      },
-      {
-        id: "sn_eggroll",
-        name: "Egg Roll",
-        category: "Snacks",
-        variants: [
-          { key: "sn_eggroll_1", label: "1 Egg", price: 30 },
-          { key: "sn_eggroll_2", label: "2 Egg", price: 35 }
+        id: "c_tandoori",
+        cat: "momo",
+        name: "চিকেন তন্দুরি মোমো",
+        catLabel: "মোমো",
+        portions: [
+          { key: "cm_t_half", label: "হাফ (৫ পিস)", price: 45 },
+          { key: "cm_t_full", label: "ফুল (১০ পিস)", price: 90 }
         ]
       },
       {
-        id: "sn_springroll",
-        name: "Veg Spring Roll",
-        category: "Snacks",
-        variants: [{ key: "sn_springroll_1", label: "1 Pc", price: 15 }]
-      },
-      {
-        id: "sn_chowmin",
-        name: "Chowmin",
-        category: "Snacks",
-        variants: [
-          { key: "sn_chowmin_half", label: "Half", price: 20 },
-          { key: "sn_chowmin_full", label: "Full", price: 40 }
+        id: "soya_65",
+        cat: "momo",
+        name: "সয়া ৬৫ (Soya 65)",
+        catLabel: "মোমো ও স্নাক্স",
+        portions: [
+          { key: "soya_half", label: "হাফ প্লেট", price: 20 },
+          { key: "soya_full", label: "ফুল প্লেট", price: 40 }
         ]
       },
       {
-        id: "sn_pakoda",
-        name: "Pakoda",
-        category: "Snacks",
-        variants: [{ key: "sn_pakoda_1", label: "1 Pc", price: 5 }]
+        id: "pak_egg_chop",
+        cat: "snacks",
+        name: "ডিম চপ (Egg Chop)",
+        catLabel: "স্ন্যাক্স ও পাকোড়া",
+        portions: [
+          { key: "egg_chop_1", label: "১ পিস", price: 7 }
+        ]
       },
       {
-        id: "sn_onionpakoda",
-        name: "Onion Pakoda (Piyaji)",
-        category: "Snacks",
-        variants: [{ key: "sn_onionpakoda_100", label: "100g", price: 20 }]
-      },
-
-      // Beverage & Others
-      {
-        id: "bv_water",
-        name: "Packaged Drinking Water",
-        category: "Beverage",
-        variants: [{ key: "bv_water_1", label: "MRP Rate", price: 10 }]
+        id: "pak_piyaji",
+        cat: "snacks",
+        name: "পেঁয়াজি / পাকোড়া (Piyaji)",
+        catLabel: "স্ন্যাক্স ও পাকোড়া",
+        portions: [
+          { key: "piyaji_100g", label: "প্রতি ১০০ গ্রাম", price: 20 }
+        ]
       },
       {
-        id: "bv_colddrink",
-        name: "Cold Drinks",
-        category: "Beverage",
-        variants: [{ key: "bv_colddrink_1", label: "Bottle (MRP)", price: 20 }]
+        id: "pak_aloo_chop",
+        cat: "snacks",
+        name: "আলু চপ (Aloo Chop)",
+        catLabel: "স্ন্যাক্স ও পাকোড়া",
+        portions: [
+          { key: "aloo_chop_1", label: "১ পিস", price: 5 }
+        ]
       },
       {
-        id: "bv_chips",
-        name: "Chips Packet",
-        category: "Beverage",
-        variants: [{ key: "bv_chips_1", label: "MRP Packet", price: 10 }]
+        id: "pak_beguni",
+        cat: "snacks",
+        name: "বেগুনি (Beguni)",
+        catLabel: "স্ন্যাক্স ও পাকোড়া",
+        portions: [
+          { key: "beguni_1", label: "১ পিস", price: 5 }
+        ]
       },
       {
-        id: "bv_biscuits",
-        name: "Biscuits",
-        category: "Beverage",
-        variants: [{ key: "bv_biscuits_1", label: "MRP Packet", price: 10 }]
+        id: "ff_burger",
+        cat: "fastfood",
+        name: "বার্গার (Aloo Tikki Burger)",
+        catLabel: "চাউমিন ও রোল",
+        portions: [
+          { key: "burg_single", label: "সিঙ্গেল টিকি", price: 20 },
+          { key: "burg_double", label: "ডাবল টিকি", price: 30 }
+        ]
       },
       {
-        id: "bv_chocolate",
-        name: "Chocolate",
-        category: "Beverage",
-        variants: [{ key: "bv_chocolate_1", label: "MRP Unit", price: 10 }]
+        id: "ff_roll",
+        cat: "fastfood",
+        name: "এগ রোল (Egg Roll)",
+        catLabel: "চাউমিন ও রোল",
+        portions: [
+          { key: "roll_single", label: "সিঙ্গেল ডিম", price: 30 },
+          { key: "roll_double", label: "ডাবল ডিম", price: 40 }
+        ]
+      },
+      {
+        id: "ff_chow",
+        cat: "fastfood",
+        name: "এগ চাউমিন (Egg Chowmin)",
+        catLabel: "চাউমিন ও রোল",
+        portions: [
+          { key: "chow_half", label: "হাফ প্লেট", price: 20 },
+          { key: "chow_full", label: "ফুল প্লেট", price: 40 }
+        ]
+      },
+      {
+        id: "oth_omelette",
+        cat: "others",
+        name: "ডিম অমলেট (Egg Omelette)",
+        catLabel: "অন্যান্য",
+        portions: [
+          { key: "om_single", label: "একটি ডিম", price: 20 },
+          { key: "om_double", label: "দুটি ডিম", price: 30 }
+        ]
+      },
+      {
+        id: "oth_poached",
+        cat: "others",
+        name: "ডিম পোচ (Egg Poached)",
+        catLabel: "অন্যান্য",
+        portions: [
+          { key: "poach_single", label: "একটি ডিম", price: 15 },
+          { key: "poach_double", label: "দুটি ডিম", price: 25 }
+        ]
+      },
+      {
+        id: "oth_boiled",
+        cat: "others",
+        name: "সেদ্ধ ডিম (Boiled Egg)",
+        catLabel: "অন্যান্য",
+        portions: [
+          { key: "boiled_single", label: "একটি ডিম", price: 15 },
+          { key: "boiled_double", label: "দুটি ডিম", price: 25 }
+        ]
+      },
+      {
+        id: "oth_soup",
+        cat: "others",
+        name: "মিক্স ভেজ স্যুপ (Mix Veg Soup)",
+        catLabel: "অন্যান্য",
+        portions: [
+          { key: "soup_bowl", label: "প্রতি বাটি", price: 5 }
+        ]
+      },
+      {
+        id: "oth_spring_roll",
+        cat: "others",
+        name: "ভেজ স্প্রিং রোল (Veg Spring Roll)",
+        catLabel: "অন্যান্য",
+        portions: [
+          { key: "s_roll_1", label: "১ পিস", price: 20 }
+        ]
+      },
+      {
+        id: "oth_drink",
+        cat: "others",
+        name: "গোল্ড ড্রিংক / জল (Gold Drink / Water)",
+        catLabel: "অন্যান্য",
+        portions: [
+          { key: "drink_1", label: "প্রতি বোতল", price: 20 }
+        ]
       }
     ];
 
-    let cart = {};
-    let activeCategory = "All";
+    const cart = {};
 
-    function renderMenu() {
-      const container = document.getElementById("menu-container");
+    function renderMenu(filter = "all") {
+      const container = document.getElementById("menu-list");
       container.innerHTML = "";
 
-      const filtered = activeCategory === "All"
-        ? menuData
-        : menuData.filter(item => item.category === activeCategory);
+      const filtered = filter === "all" ? menuData : menuData.filter(i => i.cat === filter);
 
       filtered.forEach(item => {
         const card = document.createElement("div");
         card.className = "item-card";
 
-        let variantsHtml = "";
-        item.variants.forEach(v => {
-          const qty = cart[v.key] ? cart[v.key].qty : 0;
-          variantsHtml += `
-            <div class="variant-row">
-              <div class="variant-info">
-                <span class="variant-name">${v.label}</span>
-                <span class="variant-price">₹${v.price}</span>
+        let portionsHtml = "";
+        item.portions.forEach(p => {
+          const qty = cart[p.key] || 0;
+          portionsHtml += `
+            <div class="portion-row">
+              <div>
+                <span class="portion-label">${p.label}</span>
+                <span class="portion-price">₹${p.price}</span>
               </div>
               <div class="counter">
-                <button onclick="updateCart('${item.name}', '${v.key}', '${v.label}', ${v.price}, -1)">−</button>
-                <span id="qty-${v.key}">${qty}</span>
-                <button onclick="updateCart('${item.name}', '${v.key}', '${v.label}', ${v.price}, 1)">+</button>
+                <button onclick="updateQty('${p.key}', -1)">-</button>
+                <span class="qty-display" id="qty-${p.key}">${qty}</span>
+                <button onclick="updateQty('${p.key}', 1)">+</button>
               </div>
             </div>
           `;
         });
 
         card.innerHTML = `
-          <div class="item-header">
-            <div>
-              <div class="item-title">${item.name}</div>
-              <div class="item-cat-tag">${item.category}</div>
-            </div>
-          </div>
-          ${variantsHtml}
+          <div class="item-title">${item.name}</div>
+          <div class="item-cat">${item.catLabel}</div>
+          ${portionsHtml}
         `;
         container.appendChild(card);
       });
     }
 
-    function filterMenu(cat) {
-      activeCategory = cat;
-      document.querySelectorAll(".cat-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.innerText === cat);
-      });
-      renderMenu();
+    function filterCat(cat, btn) {
+      document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderMenu(cat);
     }
 
-    function updateCart(itemName, variantKey, variantLabel, price, delta) {
-      if (!cart[variantKey]) {
-        cart[variantKey] = {
-          name: itemName,
-          variant: variantLabel,
-          price: price,
-          qty: 0
-        };
+    function updateQty(key, delta) {
+      const current = cart[key] || 0;
+      const updated = Math.max(0, current + delta);
+      if (updated === 0) {
+        delete cart[key];
+      } else {
+        cart[key] = updated;
       }
 
-      cart[variantKey].qty += delta;
+      const display = document.getElementById(`qty-${key}`);
+      if (display) display.innerText = updated;
 
-      if (cart[variantKey].qty <= 0) {
-        delete cart[variantKey];
-      }
-
-      const qtySpan = document.getElementById(`qty-${variantKey}`);
-      if (qtySpan) {
-        qtySpan.innerText = cart[variantKey] ? cart[variantKey].qty : 0;
-      }
-
-      updateTotals();
+      updateSummary();
     }
 
-    function updateTotals() {
-      let grandTotal = 0;
+    function updateSummary() {
       let totalQty = 0;
+      let totalPrice = 0;
 
-      for (let k in cart) {
-        grandTotal += cart[k].price * cart[k].qty;
-        totalQty += cart[k].qty;
-      }
+      menuData.forEach(item => {
+        item.portions.forEach(p => {
+          const count = cart[p.key] || 0;
+          if (count > 0) {
+            totalQty += count;
+            totalPrice += count * p.price;
+          }
+        });
+      });
 
-      document.getElementById("cart-count").innerText = `${totalQty} items selected`;
-      document.getElementById("cart-total").innerText = `₹${grandTotal}`;
+      document.getElementById("item-count").innerText = `${totalQty} টি আইটেম`;
+      document.getElementById("total-price").innerText = `₹${totalPrice}`;
       document.getElementById("order-btn").disabled = totalQty === 0;
     }
 
-    function placeOrderWhatsApp() {
-      const name = document.getElementById("cust-name").value.trim() || "Walk-in Customer";
-      const table = document.getElementById("cust-table").value.trim() || "Takeaway / Dine-in";
+    function sendWhatsAppOrder() {
+      const name = document.getElementById("cust-name").value.trim() || "গ্রাহক (Customer)";
+      const detail = document.getElementById("cust-detail").value.trim() || "Not specified";
 
-      let orderLines = "";
-      let total = 0;
+      let itemsText = "";
+      let grandTotal = 0;
 
-      for (let k in cart) {
-        const item = cart[k];
-        const lineCost = item.price * item.qty;
-        total += lineCost;
-        orderLines += `• ${item.name} (${item.variant}) x ${item.qty} = ₹${lineCost}\n`;
-      }
+      menuData.forEach(item => {
+        item.portions.forEach(p => {
+          const count = cart[p.key] || 0;
+          if (count > 0) {
+            const cost = count * p.price;
+            grandTotal += cost;
+            itemsText += `• ${item.name} (${p.label}) x ${count} = ₹${cost}\n`;
+          }
+        });
+      });
 
-      const orderMsg = 
-`*NEW ORDER: Rita Momo Mart*
-━━━━━━━━━━━━━━━━━━
-*Customer:* ${name}
-*Table / Type:* ${table}
-━━━━━━━━━━━━━━━━━━
-*Items Ordered:*
-${orderLines}━━━━━━━━━━━━━━━━━━
-*Grand Total: ₹${total}*
+      const message = `🥟 *রিতা মোমো মার্ট - নতুন অর্ডার* 🥟\n` +
+                      `━━━━━━━━━━━━━━━━\n` +
+                      `👤 *নাম:* ${name}\n` +
+                      `📍 *টেবিল/ফোন:* ${detail}\n` +
+                      `━━━━━━━━━━━━━━━━\n` +
+                      `📋 *অর্ডার লিস্ট:*\n${itemsText}` +
+                      `━━━━━━━━━━━━━━━━\n` +
+                      `💰 *মোট বিল:* ₹${grandTotal}\n\n` +
+                      `দয়া করে অর্ডারটি কনফার্ম করুন!`;
 
-_Please confirm and prepare my order!_`;
-
-      const encoded = encodeURIComponent(orderMsg);
-      window.open(`https://wa.me/${WHATSAPP_NUM}?text=${encoded}`, '_blank');
+      const encoded = encodeURIComponent(message);
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, "_blank");
     }
 
-    // Run on load
-    renderMenu();
+    renderMenu("all");
   </script>
 </body>
   </html>
