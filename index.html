@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Rita Momo Mart | রীতা মোমো মার্ট - নারায়ণপুর মিল মোড়</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,13 +26,14 @@
       margin: 0;
       padding: 0;
       font-family: var(--font-main);
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       background: #fafafa;
       color: var(--dark);
       line-height: 1.5;
-      padding-bottom: 90px;
+      padding-bottom: 110px;
     }
 
     /* Notice Bar */
@@ -41,7 +42,7 @@
       color: #fff;
       text-align: center;
       padding: 8px 12px;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 600;
     }
 
@@ -58,7 +59,7 @@
     .header-wrap {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 12px 16px;
+      padding: 10px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -67,25 +68,25 @@
     .brand-box {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .brand-logo {
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       object-fit: contain;
       border-radius: 8px;
     }
 
     .brand-title {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--primary-dark);
       line-height: 1.2;
     }
 
     .brand-subtitle {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--gray);
     }
 
@@ -93,12 +94,8 @@
       color: var(--dark);
       text-decoration: none;
       font-weight: 600;
-      margin-left: 14px;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
+      margin-left: 10px;
+      font-size: 0.9rem;
     }
 
     /* Hero */
@@ -107,89 +104,89 @@
       background-color: #222;
       color: #fff;
       text-align: center;
-      padding: 40px 16px;
+      padding: 35px 16px;
     }
 
     .hero h1 {
-      font-size: 1.9rem;
+      font-size: 1.8rem;
       margin-bottom: 8px;
       color: var(--secondary);
     }
 
     .hero p {
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       max-width: 600px;
-      margin: 0 auto 16px;
+      margin: 0 auto 14px;
     }
 
     .hero-badges {
       display: flex;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .badge {
       background: rgba(255,255,255,0.15);
       border: 1px solid rgba(255,255,255,0.3);
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 20px;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
     }
 
     /* Container */
     .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 24px 16px;
+      padding: 20px 14px;
     }
 
-    /* Categories / Tabs */
+    /* Categories Tabs */
     .category-nav {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding-bottom: 12px;
-      margin-bottom: 24px;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
       position: sticky;
-      top: 72px;
+      top: 65px;
       background: #fafafa;
       z-index: 90;
+      scrollbar-width: none;
+    }
+    .category-nav::-webkit-scrollbar {
+      display: none;
     }
 
     .cat-btn {
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 8px 16px;
-      border-radius: 24px;
+      padding: 8px 14px;
+      border-radius: 20px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       white-space: nowrap;
       text-decoration: none;
       color: var(--dark);
-      cursor: pointer;
-      transition: all 0.2s;
     }
 
-    .cat-btn:hover, .cat-btn.active {
+    .cat-btn.active {
       background: var(--primary);
       color: #fff;
       border-color: var(--primary);
     }
 
-    /* Menu Sections */
+    /* Section Title */
     .section-title {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--dark);
-      margin: 32px 0 16px;
-      padding-bottom: 6px;
+      margin: 28px 0 14px;
+      padding-bottom: 4px;
       border-bottom: 2px solid var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
+    /* Menu Cards */
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -209,8 +206,7 @@
     .food-img-wrap {
       width: 100%;
       height: 180px;
-      background: #eaeaea;
-      position: relative;
+      background: #f0f0f0;
     }
 
     .food-img {
@@ -221,7 +217,7 @@
     }
 
     .food-body {
-      padding: 14px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
@@ -250,7 +246,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #fdfdfd;
+      background: #fbfbfb;
       border: 1px solid var(--border);
       padding: 6px 10px;
       border-radius: 8px;
@@ -258,15 +254,15 @@
 
     .portion-title {
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
     .portion-price {
       font-weight: 700;
       color: var(--primary-dark);
       margin-left: auto;
-      margin-right: 12px;
-      font-size: 1rem;
+      margin-right: 10px;
+      font-size: 0.98rem;
     }
 
     .add-btn {
@@ -275,14 +271,19 @@
       border: none;
       padding: 6px 14px;
       border-radius: 6px;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s ease;
     }
 
-    .add-btn:hover {
+    .add-btn:active {
+      transform: scale(0.95);
       background: var(--primary-dark);
+    }
+
+    .add-btn.added {
+      background: #25d366 !important;
     }
 
     /* Info Cards */
@@ -290,15 +291,15 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 24px;
-      margin: 32px 0;
+      padding: 20px;
+      margin: 26px 0;
       box-shadow: var(--shadow);
     }
 
     .info-title {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: var(--primary-dark);
     }
 
@@ -308,36 +309,33 @@
       gap: 8px;
       background: #0284c7;
       color: #fff;
-      padding: 10px 18px;
+      padding: 10px 16px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
       margin-top: 12px;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
-    .map-btn:hover {
-      background: #0369a1;
-    }
-
-    /* Floating Cart Sticky Bar */
+    /* Fixed Bottom Cart Bar */
     .cart-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: #111;
+      background: #181818;
       color: #fff;
-      padding: 12px 16px;
+      padding: 12px 18px;
       display: none;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
-      box-shadow: 0 -4px 16px rgba(0,0,0,0.2);
+      z-index: 9999;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+      border-top: 2px solid var(--secondary);
     }
 
     .cart-bar.active {
-      display: flex;
+      display: flex !important;
     }
 
     .cart-summary {
@@ -348,10 +346,11 @@
     .cart-summary .qty {
       font-size: 0.85rem;
       color: var(--secondary);
+      font-weight: 600;
     }
 
     .cart-summary .total {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 700;
     }
 
@@ -359,17 +358,14 @@
       background: #25d366;
       color: #fff;
       border: none;
-      padding: 10px 20px;
+      padding: 10px 18px;
       border-radius: 8px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
-    /* Cart Modal / Drawer */
+    /* Cart Modal Drawer */
     .cart-modal {
       position: fixed;
       bottom: 0;
@@ -377,11 +373,11 @@
       right: 0;
       max-height: 80vh;
       background: #fff;
-      border-radius: 16px 16px 0 0;
-      box-shadow: 0 -8px 24px rgba(0,0,0,0.25);
-      z-index: 1100;
+      border-radius: 18px 18px 0 0;
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.3);
+      z-index: 10001;
       transform: translateY(100%);
-      transition: transform 0.3s ease;
+      transition: transform 0.25s ease-out;
       display: flex;
       flex-direction: column;
     }
@@ -391,7 +387,7 @@
     }
 
     .cart-header {
-      padding: 14px 16px;
+      padding: 14px 18px;
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
@@ -406,12 +402,14 @@
     .close-cart {
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+      line-height: 1;
       cursor: pointer;
+      color: #333;
     }
 
     .cart-items-list {
-      padding: 14px 16px;
+      padding: 16px;
       overflow-y: auto;
       flex-grow: 1;
       display: flex;
@@ -424,7 +422,7 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px dashed var(--border);
-      padding-bottom: 8px;
+      padding-bottom: 10px;
     }
 
     .cart-item-title {
@@ -433,7 +431,7 @@
     }
 
     .cart-item-price {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--gray);
     }
 
@@ -444,17 +442,18 @@
     }
 
     .qty-btn {
-      background: #e9ecef;
+      background: #eee;
       border: none;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 6px;
       font-weight: 700;
+      font-size: 1.1rem;
       cursor: pointer;
     }
 
     .cart-footer {
-      padding: 14px 16px;
+      padding: 16px;
       background: #f8f9fa;
       border-top: 1px solid var(--border);
     }
@@ -462,7 +461,7 @@
     .cart-total-row {
       display: flex;
       justify-content: space-between;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 700;
       margin-bottom: 12px;
     }
@@ -477,18 +476,94 @@
       font-weight: 700;
       font-size: 1.05rem;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
     }
 
     .backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 1050;
+      background: rgba(0,0,0,0.6);
+      z-index: 10000;
       display: none;
+    }
+
+    .backdrop.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="notice-bar">
+    ⚠️ প্রতি রবিবার বন্ধ থাকে (Sunday Closed) | হোম ডেলিভারি ও পার্সেল সার্ভিস উপলব্ধ
+  </div>
+
+  <header>
+    <div class="header-wrap">
+      <div class="brand-box">
+        <img class="brand-logo" src="images/logo.png" alt="Logo" onerror="this.style.display='none'">
+        <div>
+          <div class="brand-title">রীতা মোমো মার্ট</div>
+          <div class="brand-subtitle">নারায়নপুর মিল মোড়, বুনিয়াদপুর</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#menu">মেনু</a>
+        <a href="#about">আমাদের সম্পর্কে</a>
+        <a href="#location">লোকেশন</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>সুস্বাদু ও গরম গরম ফাস্টফুড</h1>
+    <p>মোমো, রোল, চাউমিন, পাকোড়া ও স্পেশাল আইটেম সরাসরি অর্ডার করুন আপনার প্রিয় রীতা মোমো মার্ট থেকে।</p>
+    <div class="hero-badges">
+      <span class="badge">🔥 ১০০% ফ্রেশ প্রস্তুতি</span>
+      <span class="badge">🛵 দ্রুত ডেলিভারি</span>
+      <span class="badge">🚫 প্রতি রবিবার বন্ধ</span>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="category-nav" id="menu">
+      <a class="cat-btn active" href="#momos">🥟 মোমো (Momos)</a>
+      <a class="cat-btn" href="#pakoda">🍟 পাকোড়া (Pakoda)</a>
+      <a class="cat-btn" href="#chow-burger">🍔 চাউমিন ও রোল</a>
+      <a class="cat-btn" href="#other">🥤 অন্যান্য (Other)</a>
+    </div>
+
+    <!-- 1. MOMOS -->
+    <h2 class="section-title" id="momos">🥟 MOMOS (Half – 5 Pcs | Full – 10 Pcs)</h2>
+    <div class="menu-grid">
+      
+      <!-- Veg Steam -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/veg-steam-momo.png" alt="Veg Steam Momos" onerror="this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Veg Steam Momos</div>
+          <div class="food-meta">ফ্রেশ সবজি ও মশলায় মোড়া নরম ভাপা মোমো</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Half (5 Pcs)</span>
+              <span class="portion-price">₹20</span>
+              <button class="add-btn" onclick="addToCart('Veg Steam Momos (Half)', 20, this)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Full (10 Pcs)</span>
+              <span class="portion-price">₹40</span>
+              <button class="add-btn" onclick="addToCart('Veg Steam Momos (Full)', 40, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Veg Fried -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/veg-fried-momo.png" alt="Veg Fried Momos" onerror="this.src='
+one;
     }
 
     .backdrop.active {
