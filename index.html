@@ -1,169 +1,718 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rita Momo Mart - Live Digital Menu & Order</title>
-    <!-- Firebase App & Firestore SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <style>
-        body { font-family: Arial, sans-serif; background: #121212; color: #fff; margin: 0; padding: 10px; padding-bottom: 90px; }
-        .header { text-align: center; padding: 15px; background: #1f1f1f; border-radius: 8px; margin-bottom: 15px; }
-        .item-card { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .badge-in { background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
-        .badge-out { background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
-        .qty-box { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
-        .qty-btn { background: #333; color: #fff; border: none; padding: 5px 10px; font-size: 16px; border-radius: 4px; cursor: pointer; }
-        .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #1f1f1f; border-top: 2px solid #333; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 10px rgba(0,0,0,0.5); }
-        .order-btn { background: #25D366; color: #000; border: none; padding: 10px 20px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; text-decoration: none; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rita Momo Mart | রীতা মোমো মার্ট - নারায়ণপুর মিল মোড়</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e63946;
+      --primary-dark: #c1121f;
+      --secondary: #ffb703;
+      --dark: #1a1a1a;
+      --light: #f8f9fa;
+      --surface: #ffffff;
+      --gray: #6c757d;
+      --border: #e9ecef;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --font-main: 'Hind Siliguri', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-main);
+    }
+
+    body {
+      background: #fafafa;
+      color: var(--dark);
+      line-height: 1.5;
+      padding-bottom: 90px;
+    }
+
+    /* Notice Bar */
+    .notice-bar {
+      background: #780000;
+      color: #fff;
+      text-align: center;
+      padding: 8px 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* Header */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .header-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.2;
+    }
+
+    .brand-subtitle {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    .nav-links a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 14px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.85)), url('images/hero-bg.png') center/cover;
+      background-color: #222;
+      color: #fff;
+      text-align: center;
+      padding: 40px 16px;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+      color: var(--secondary);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto 16px;
+    }
+
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+
+    /* Categories / Tabs */
+    .category-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      position: sticky;
+      top: 72px;
+      background: #fafafa;
+      z-index: 90;
+    }
+
+    .cat-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      text-decoration: none;
+      color: var(--dark);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .cat-btn:hover, .cat-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Menu Sections */
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin: 32px 0 16px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .food-card {
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .food-img-wrap {
+      width: 100%;
+      height: 180px;
+      background: #eaeaea;
+      position: relative;
+    }
+
+    .food-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .food-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .food-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .food-meta {
+      font-size: 0.82rem;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .portions {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .portion-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fdfdfd;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+
+    .portion-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .portion-price {
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-left: auto;
+      margin-right: 12px;
+      font-size: 1rem;
+    }
+
+    .add-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .add-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Info Cards */
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 32px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .info-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+    }
+
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0284c7;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+
+    .map-btn:hover {
+      background: #0369a1;
+    }
+
+    /* Floating Cart Sticky Bar */
+    .cart-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #111;
+      color: #fff;
+      padding: 12px 16px;
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.2);
+    }
+
+    .cart-bar.active {
+      display: flex;
+    }
+
+    .cart-summary {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-summary .qty {
+      font-size: 0.85rem;
+      color: var(--secondary);
+    }
+
+    .cart-summary .total {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .cart-action-btn {
+      background: #25d366;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Cart Modal / Drawer */
+    .cart-modal {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-height: 80vh;
+      background: #fff;
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.25);
+      z-index: 1100;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-modal.open {
+      transform: translateY(0);
+    }
+
+    .cart-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-title {
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .cart-items-list {
+      padding: 14px 16px;
+      overflow-y: auto;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cart-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 8px;
+    }
+
+    .cart-item-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .cart-item-price {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    .cart-item-ctrls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      background: #e9ecef;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .cart-footer {
+      padding: 14px 16px;
+      background: #f8f9fa;
+      border-top: 1px solid var(--border);
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .whatsapp-order-btn {
+      width: 100%;
+      background: #25d366;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1050;
+      display: none;
+    }
+
+    .backdrop.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="header">
-        <h2>রীতা মোমো মার্ট (Rita Momo Mart)</h2>
-        <p>Narayan Pur (Mill More), Buniadpur</p>
-        <p style="font-size: 13px; color: #ccc;">Call: 9485949685, 9911437053, 8383923530</p>
-        <a href="https://maps.app.goo.gl/AxpKtAtTFicX6jmo7" target="_blank" style="color: #4da6ff; font-size: 14px;">📍 View on Google Maps</a>
-    </div>
+  <!-- Notice -->
+  <div class="notice-bar">
+    ⚠️ প্রতি রবিবার বন্ধ থাকে (Sunday Closed) | হোম ডেলিভারি ও পার্সেল সার্ভিস উপলব্ধ
+  </div>
 
-    <div id="menu-container">
-        <p style="text-align: center; color: #aaa;">Loading live menu...</p>
-    </div>
-
-    <!-- Floating Cart & Checkout Bar -->
-    <div class="cart-bar">
+  <!-- Header -->
+  <header>
+    <div class="header-wrap">
+      <div class="brand-box">
+        <img class="brand-logo" src="images/logo.png" alt="Logo" onerror="this.style.display='none'">
         <div>
-            <span id="cart-count" style="font-weight: bold; font-size: 15px;">0 Items</span> | 
-            <span id="cart-total" style="color: #25D366; font-weight: bold; font-size: 16px;">₹0</span>
+          <div class="brand-title">রীতা মোমো মার্ট</div>
+          <div class="brand-subtitle">নারায়নপুর মিল মোড়, বুনিয়াদপুর</div>
         </div>
-        <a id="whatsapp-order-btn" href="#" onclick="sendWhatsAppOrder(event)" class="order-btn">Proceed to Order 🛒</a>
+      </div>
+      <nav class="nav-links">
+        <a href="#menu">মেনু</a>
+        <a href="#about">আমাদের সম্পর্কে</a>
+        <a href="#location">লোকেশন</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>সুস্বাদু ও গরম গরম ফাস্টফুড</h1>
+    <p>মোমো, রোল, চাউমিন, পাকোড়া ও স্পেশাল আইটেম সরাসরি অর্ডার করুন আপনার প্রিয় রীতা মোমো মার্ট থেকে।</p>
+    <div class="hero-badges">
+      <span class="badge">🔥 ১০০% ফ্রেশ প্রস্তুতি</span>
+      <span class="badge">🛵 দ্রুত ডেলিভারি</span>
+      <span class="badge">🚫 প্রতি রবিবার বন্ধ</span>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- Category Tabs -->
+    <div class="category-nav" id="menu">
+      <a class="cat-btn active" href="#momos">🥟 মোমো (Momos)</a>
+      <a class="cat-btn" href="#pakoda">🍟 পাকোড়া (Pakoda)</a>
+      <a class="cat-btn" href="#chow-burger">🍔 চাউমিন ও রোল</a>
+      <a class="cat-btn" href="#other">🥤 অন্যান্য (Other)</a>
     </div>
 
-    <script>
-        const firebaseConfig = { projectId: "restaurantpos-vbmk" };
-        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
-        const db = firebase.firestore();
+    <!-- 1. MOMOS -->
+    <h2 class="section-title" id="momos">🥟 MOMOS (Half – 5 Pcs | Full – 10 Pcs)</h2>
+    <div class="menu-grid">
+      
+      <!-- Veg Steam -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/veg-steam-momo.png" alt="Veg Steam Momos" onerror="this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Veg Steam Momos</div>
+          <div class="food-meta">ফ্রেশ সবজি ও মশলায় মোড়া নরম ভাপা মোমো</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Half (5 Pcs)</span>
+              <span class="portion-price">₹20</span>
+              <button class="add-btn" onclick="addToCart('Veg Steam Momos (Half)', 20)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Full (10 Pcs)</span>
+              <span class="portion-price">₹40</span>
+              <button class="add-btn" onclick="addToCart('Veg Steam Momos (Full)', 40)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        let menuItems = [];
-        let cart = {}; // itemId -> quantity
+      <!-- Veg Fried -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/veg-fried-momo.png" alt="Veg Fried Momos" onerror="this.src='https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Veg Fried Momos</div>
+          <div class="food-meta">মুচমুচে ফ্রাইড সুস্বাদু ভেজ মোমো</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Half (5 Pcs)</span>
+              <span class="portion-price">₹25</span>
+              <button class="add-btn" onclick="addToCart('Veg Fried Momos (Half)', 25)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Full (10 Pcs)</span>
+              <span class="portion-price">₹50</span>
+              <button class="add-btn" onclick="addToCart('Veg Fried Momos (Full)', 50)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        const defaultItems = [
-            { id: "1", name: "Veg. Steam Momos", category: "Momos", price: 40, isAvailable: true },
-            { id: "2", name: "Veg. Fried Momos", category: "Momos", price: 50, isAvailable: true },
-            { id: "3", name: "Veg. Kurkure Momos", category: "Momos", price: 70, isAvailable: true },
-            { id: "4", name: "Chicken Steam Momos", category: "Momos", price: 60, isAvailable: true },
-            { id: "5", name: "Chicken Fried Momos", category: "Momos", price: 70, isAvailable: true },
-            { id: "6", name: "Chowmin (Veg)", category: "Chowmin", price: 40, isAvailable: true },
-            { id: "7", name: "Burger (Aloo Tikki)", category: "Burger", price: 30, isAvailable: true },
-            { id: "8", name: "Aloo Chop (Pakoda)", category: "Pakoda", price: 5, isAvailable: true }
-        ];
+      <!-- Veg Kurkure -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/veg-kurkure-momo.png" alt="Veg Kurkure Momos" onerror="this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Veg Kurkure Momos</div>
+          <div class="food-meta">বাইরে অতিরিক্ত ক্রাঞ্চি কুড়কুড়ে কোটিংযুক্ত</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Half (5 Pcs)</span>
+              <span class="portion-price">₹35</span>
+              <button class="add-btn" onclick="addToCart('Veg Kurkure Momos (Half)', 35)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Full (10 Pcs)</span>
+              <span class="portion-price">₹70</span>
+              <button class="add-btn" onclick="addToCart('Veg Kurkure Momos (Full)', 70)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        function renderMenu(itemsList) {
-            menuItems = itemsList;
-            const container = document.getElementById("menu-container");
-            container.innerHTML = "";
-            
-            itemsList.forEach((item, index) => {
-                const itemId = item.id || index;
-                const itemName = item.name || item.title || "Food Item";
-                const itemPrice = item.price || item.fullPrice || 40;
-                const isInStock = item.isAvailable !== false;
-                const qty = cart[itemId] || 0;
-                
-                const card = document.createElement("div");
-                card.className = "item-card";
-                card.innerHTML = `
-                    <div>
-                        <strong style="font-size: 15px;">${itemName}</strong><br>
-                        <span style="color: #25D366; font-size: 14px; font-weight: bold;">₹${itemPrice}</span><br>
-                        <span class="${isInStock ? 'badge-in' : 'badge-out'}">${isInStock ? 'In Stock' : 'Out of Stock'}</span>
-                    </div>
-                    <div>
-                        ${isInStock ? `
-                            <div class="qty-box">
-                                <button class="qty-btn" onclick="updateQty('${itemId}', -1)">-</button>
-                                <span style="font-size: 16px; font-weight: bold; width: 20px; text-align: center;">${qty}</span>
-                                <button class="qty-btn" onclick="updateQty('${itemId}', 1)">+</button>
-                            </div>
-                        ` : '<span style="color:#777; font-size:12px;">Unavailable</span>'}
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-            updateCartBar();
-        }
+      <!-- Chicken Steam -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/chicken-steam-momo.png" alt="Chicken Steam Momos" onerror="this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Chicken Steam Momos</div>
+          <div class="food-meta">জুসি চিকেন কিমায় ভর্তি গরম গরম স্টিম মোমো</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Half (5 Pcs)</span>
+              <span class="portion-price">₹30</span>
+              <button class="add-btn" onclick="addToCart('Chicken Steam Momos (Half)', 30)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Full (10 Pcs)</span>
+              <span class="portion-price">₹60</span>
+              <button class="add-btn" onclick="addToCart('Chicken Steam Momos (Full)', 60)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        window.updateQty = function(id, change) {
-            if (!cart[id]) cart[id] = 0;
-            cart[id] += change;
-            if (cart[id] < 0) cart[id] = 0;
-            if (cart[id] === 0) delete cart[id];
-            renderMenu(menuItems);
-        };
+      <!-- Chicken Fried -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/chicken-fried-momo.png" alt="Chicken Fried Momos" onerror="this.src='https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Chicken Fried Momos</div>
+          <div class="food-meta">খাস্তা ও মুচমুচে ফ্রাইড চিকেন মোমো</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Half (5 Pcs)</span>
+              <span class="portion-price">₹35</span>
+              <button class="add-btn" onclick="addToCart('Chicken Fried Momos (Half)', 35)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Full (10 Pcs)</span>
+              <span class="portion-price">₹70</span>
+              <button class="add-btn" onclick="addToCart('Chicken Fried Momos (Full)', 70)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        function updateCartBar() {
-            let totalCount = 0;
-            let totalPrice = 0;
+      <!-- Chicken Kurkure -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/chicken-kurkure-momo.png" alt="Chicken Kurkure Momos" onerror="this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Chicken Kurkure Momos</div>
+          <div class="food-meta">স্পেশাল ক্রাঞ্চি কুড়কুড়ে চিকেন মোমো</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Half (5 Pcs)</span>
+              <span class="portion-price">₹40</span>
+              <button class="add-btn" onclick="addToCart('Chicken Kurkure Momos (Half)', 40)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Full (10 Pcs)</span>
+              <span class="portion-price">₹80</span>
+              <button class="add-btn" onclick="addToCart('Chicken Kurkure Momos (Full)', 80)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            for (let id in cart) {
-                const item = menuItems.find((it, idx) => (it.id || idx) == id);
-                if (item) {
-                    totalCount += cart[id];
-                    totalPrice += (item.price || item.fullPrice || 40) * cart[id];
-                }
-            }
+      <!-- Chicken Tandoori -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/chicken-tandoori-momo.png" alt="Chicken Tandoori Momos" onerror="this.src='https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Chicken Tandoori Momos</div>
+          <div class="food-meta">স্মোকি ও স্পাইসি তন্দুরি মশলায় মাখানো</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Half (5 Pcs)</span>
+              <span class="portion-price">₹45</span>
+              <button class="add-btn" onclick="addToCart('Chicken Tandoori Momos (Half)', 45)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Full (10 Pcs)</span>
+              <span class="portion-price">₹90</span>
+              <button class="add-btn" onclick="addToCart('Chicken Tandoori Momos (Full)', 90)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            document.getElementById("cart-count").innerText = `${totalCount} Items`;
-            document.getElementById("cart-total").innerText = `₹${totalPrice}`;
-        }
+    </div>
 
-        window.sendWhatsAppOrder = function(e) {
-            let totalCount = 0;
-            let totalPrice = 0;
-            let orderText = "👋 Hi Rita Momo Mart! I want to place a new order:%0A%0A";
-
-            for (let id in cart) {
-                const item = menuItems.find((it, idx) => (it.id || idx) == id);
-                if (item) {
-                    const q = cart[id];
-                    const p = (item.price || item.fullPrice || 40) * q;
-                    totalCount += q;
-                    totalPrice += p;
-                    orderText += `▪️ ${item.name || item.title} x ${q} = ₹%0A`;
-                }
-            }
-
-            if (totalCount === 0) {
-                e.preventDefault();
-                alert("Please select at least one item to order!");
-                return;
-            }
-
-            orderText += `%0A*Total Amount: ₹${totalPrice}*%0A%0APlease confirm my order!`;
-            const waUrl = `https://wa.me/919485949685?text=${orderText}`;
-            document.getElementById("whatsapp-order-btn").href = waUrl;
-        };
-
-        // Fetch from Firestore or fallback
-        db.collection("rooms").doc("RITA-MOMO-88").collection("items").get()
-            .then((snapshot) => {
-                if (!snapshot.empty) {
-                    let items = [];
-                    snapshot.forEach(doc => {
-                        let data = doc.data();
-                        data.id = doc.id;
-                        items.push(data);
-                    });
-                    renderMenu(items);
-                } else {
-                    renderMenu(defaultItems);
-                }
-            })
-            .catch(() => {
-                renderMenu(defaultItems);
-            });
-    </script>
-</body>
-</html>
+    <!-- 2. PAKODA -->
+    <h2 class="section-title" id="pakoda">🍟 PAKODA (পাকোড়া ও চপ)</h2>
+    <div class="menu-grid">
+      
+      <!-- Egg Chop -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/egg-chop.png" alt="Egg Chop" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f7
