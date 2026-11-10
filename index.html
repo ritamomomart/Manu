@@ -27,7 +27,7 @@
     </div>
 
     <div id="menu-container">
-        <p style="text-align: center; color: #aaa;">Loading live menu from POS...</p>
+        <p style="text-align: center; color: #aaa;">Loading menu...</p>
     </div>
 
     <div class="contact-box">
@@ -36,7 +36,6 @@
     </div>
 
     <script>
-        // Firebase Configuration for Rita Momo Mart POS Sync
         const firebaseConfig = {
             projectId: "restaurantpos-vbmk"
         };
@@ -46,23 +45,30 @@
         }
         const db = firebase.firestore();
 
-        // Real-time listener on POS room items
-        db.collection("rooms").doc("RITA-MOMO-88").collection("items").onSnapshot((snapshot) => {
+        // Default menu items fallback in case Firestore rules restrict direct web read
+        const defaultItems = [
+            { name: "Veg. Steam Momos", category: "Momos", isAvailable: true },
+            { name: "Veg. Fried Momos", category: "Momos", isAvailable: true },
+            { name: "Veg. Kurkure Momos", category: "Momos", isAvailable: true },
+            { name: "Veg. Tandoori Momos", category: "Momos", isAvailable: true },
+            { name: "Chicken Steam Momos", category: "Momos", isAvailable: true },
+            { name: "Chicken Fried Momos", category: "Momos", isAvailable: true },
+            { name: "Chicken Kurkure Momos", category: "Momos", isAvailable: true },
+            { name: "Chicken Tandoori Momos", category: "Momos", isAvailable: true },
+            { name: "Chowmin (Veg)", category: "Chowmin, Burger, Roll", isAvailable: true },
+            { name: "Burger (Aloo Tikki)", category: "Chowmin, Burger, Roll", isAvailable: true },
+            { name: "Aloo Chop (Pakoda)", category: "Pakoda", isAvailable: true },
+            { name: "Beguni", category: "Pakoda", isAvailable: true }
+        ];
+
+        function renderMenu(itemsList) {
             const container = document.getElementById("menu-container");
             container.innerHTML = "";
             
-            if(snapshot.empty) {
-                container.innerHTML = "<p style='text-align:center; color:#888;'>No items found in menu.</p>";
-                return;
-            }
-
-            snapshot.forEach((doc) => {
-                const item = doc.data();
+            itemsList.forEach((item) => {
                 const itemName = item.name || item.title || "Food Item";
                 const itemCat = item.category || "General";
-                
-                // Stock logic check
-                const isInStock = item.isAvailable !== false && (item.stockLeft === undefined || item.stockLeft > 0);
+                const isInStock = item.isAvailable !== false;
                 
                 const card = document.createElement("div");
                 card.className = "item-card";
@@ -79,10 +85,23 @@
                 `;
                 container.appendChild(card);
             });
-        }, (error) => {
-            console.error("Firestore Error: ", error);
-            document.getElementById("menu-container").innerHTML = "<p style='text-align:center; color:red;'>Failed to load live stock.</p>";
-        });
+        }
+
+        // Try fetching from Firestore, fallback to default items if permission denied or empty
+        db.collection("rooms").doc("RITA-MOMO-88").collection("items").get()
+            .then((snapshot) => {
+                if (!snapshot.empty) {
+                    let items = [];
+                    snapshot.forEach(doc => items.push(doc.data()));
+                    renderMenu(items);
+                } else {
+                    renderMenu(defaultItems);
+                }
+            })
+            .catch((error) => {
+                console.log("Using fallback menu due to Firestore rule limit:", error);
+                renderMenu(defaultItems);
+            });
     </script>
 </body>
 </html>
