@@ -13,20 +13,21 @@
         .item-card { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .badge-in { background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
         .badge-out { background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
-        .contact-box { background: #222; padding: 10px; border-radius: 8px; margin-top: 15px; text-align: center; font-size: 14px; }
-        .contact-box a { color: #25D366; text-decoration: none; font-weight: bold; }
+        .contact-box { background: #222; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center; font-size: 14px; }
+        .contact-box a { color: #25D366; text-decoration: none; font-weight: bold; font-size: 16px; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h2>রীতা মোমো মার্ট (Rita Momo Mart)</h2>
-        <p>Narayan Pur (Mill More), Buniadpur | Call: 9485949685, 9911437053, 8383923530</p>
+        <p>Narayan Pur (Mill More), Buniadpur</p>
+        <p>Call: 9485949685, 9911437053, 8383923530</p>
         <a href="https://maps.app.goo.gl/AxpKtAtTFicX6jmo7" target="_blank" style="color: #4da6ff;">📍 View on Google Maps</a>
     </div>
 
     <div id="menu-container">
-        <p style="text-align: center;">Loading live stock from POS...</p>
+        <p style="text-align: center; color: #aaa;">Loading live menu from POS...</p>
     </div>
 
     <div class="contact-box">
@@ -37,8 +38,9 @@
     <script>
         // Firebase Configuration for Rita Momo Mart POS Sync
         const firebaseConfig = {
-            projectId: "restaurantpos-vbmk" // Aapka firebase project id agar alag ho toh match kar lein
+            projectId: "restaurantpos-vbmk"
         };
+        
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         }
@@ -50,20 +52,24 @@
             container.innerHTML = "";
             
             if(snapshot.empty) {
-                container.innerHTML = "<p style='text-align:center;'>No items found in menu.</p>";
+                container.innerHTML = "<p style='text-align:center; color:#888;'>No items found in menu.</p>";
                 return;
             }
 
             snapshot.forEach((doc) => {
                 const item = doc.data();
+                const itemName = item.name || item.title || "Food Item";
+                const itemCat = item.category || "General";
+                
+                // Stock logic check
                 const isInStock = item.isAvailable !== false && (item.stockLeft === undefined || item.stockLeft > 0);
                 
                 const card = document.createElement("div");
                 card.className = "item-card";
                 card.innerHTML = `
                     <div>
-                        <strong>${item.name || item.title || "Item"}</strong><br>
-                        <small style="color: #aaa;">Category: ${item.category || 'General'}</small>
+                        <strong style="font-size: 16px;">${itemName}</strong><br>
+                        <small style="color: #aaa;">Category: ${itemCat}</small>
                     </div>
                     <div>
                         <span class="${isInStock ? 'badge-in' : 'badge-out'}">
@@ -73,208 +79,10 @@
                 `;
                 container.appendChild(card);
             });
+        }, (error) => {
+            console.error("Firestore Error: ", error);
+            document.getElementById("menu-container").innerHTML = "<p style='text-align:center; color:red;'>Failed to load live stock.</p>";
         });
     </script>
 </body>
 </html>
-চাউমিন ও রোল",
-        portions: [
-          { key: "burg_single", label: "সিঙ্গেল টিকি", price: 20 },
-          { key: "burg_double", label: "ডাবল টিকি", price: 30 }
-        ]
-      },
-      {
-        id: "ff_roll",
-        cat: "fastfood",
-        name: "এগ রোল (Egg Roll)",
-        catLabel: "চাউমিন ও রোল",
-        portions: [
-          { key: "roll_single", label: "সিঙ্গেল ডিম", price: 30 },
-          { key: "roll_double", label: "ডাবল ডিম", price: 40 }
-        ]
-      },
-      {
-        id: "ff_chow",
-        cat: "fastfood",
-        name: "এগ চাউমিন (Egg Chowmin)",
-        catLabel: "চাউমিন ও রোল",
-        portions: [
-          { key: "chow_half", label: "হাফ প্লেট", price: 20 },
-          { key: "chow_full", label: "ফুল প্লেট", price: 40 }
-        ]
-      },
-      {
-        id: "oth_omelette",
-        cat: "others",
-        name: "ডিম অমলেট (Egg Omelette)",
-        catLabel: "অন্যান্য",
-        portions: [
-          { key: "om_single", label: "একটি ডিম", price: 20 },
-          { key: "om_double", label: "দুটি ডিম", price: 30 }
-        ]
-      },
-      {
-        id: "oth_poached",
-        cat: "others",
-        name: "ডিম পোচ (Egg Poached)",
-        catLabel: "অন্যান্য",
-        portions: [
-          { key: "poach_single", label: "একটি ডিম", price: 15 },
-          { key: "poach_double", label: "দুটি ডিম", price: 25 }
-        ]
-      },
-      {
-        id: "oth_boiled",
-        cat: "others",
-        name: "সেদ্ধ ডিম (Boiled Egg)",
-        catLabel: "অন্যান্য",
-        portions: [
-          { key: "boiled_single", label: "একটি ডিম", price: 15 },
-          { key: "boiled_double", label: "দুটি ডিম", price: 25 }
-        ]
-      },
-      {
-        id: "oth_soup",
-        cat: "others",
-        name: "মিক্স ভেজ স্যুপ (Mix Veg Soup)",
-        catLabel: "অন্যান্য",
-        portions: [
-          { key: "soup_bowl", label: "প্রতি বাটি", price: 5 }
-        ]
-      },
-      {
-        id: "oth_spring_roll",
-        cat: "others",
-        name: "ভেজ স্প্রিং রোল (Veg Spring Roll)",
-        catLabel: "অন্যান্য",
-        portions: [
-          { key: "s_roll_1", label: "১ পিস", price: 20 }
-        ]
-      },
-      {
-        id: "oth_drink",
-        cat: "others",
-        name: "গোল্ড ড্রিংক / জল (Gold Drink / Water)",
-        catLabel: "অন্যান্য",
-        portions: [
-          { key: "drink_1", label: "প্রতি বোতল", price: 20 }
-        ]
-      }
-    ];
-
-    const cart = {};
-
-    function renderMenu(filter = "all") {
-      const container = document.getElementById("menu-list");
-      container.innerHTML = "";
-
-      const filtered = filter === "all" ? menuData : menuData.filter(i => i.cat === filter);
-
-      filtered.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "item-card";
-
-        let portionsHtml = "";
-        item.portions.forEach(p => {
-          const qty = cart[p.key] || 0;
-          portionsHtml += `
-            <div class="portion-row">
-              <div>
-                <span class="portion-label">${p.label}</span>
-                <span class="portion-price">₹${p.price}</span>
-              </div>
-              <div class="counter">
-                <button onclick="updateQty('${p.key}', -1)">-</button>
-                <span class="qty-display" id="qty-${p.key}">${qty}</span>
-                <button onclick="updateQty('${p.key}', 1)">+</button>
-              </div>
-            </div>
-          `;
-        });
-
-        card.innerHTML = `
-          <div class="item-title">${item.name}</div>
-          <div class="item-cat">${item.catLabel}</div>
-          ${portionsHtml}
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function filterCat(cat, btn) {
-      document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      renderMenu(cat);
-    }
-
-    function updateQty(key, delta) {
-      const current = cart[key] || 0;
-      const updated = Math.max(0, current + delta);
-      if (updated === 0) {
-        delete cart[key];
-      } else {
-        cart[key] = updated;
-      }
-
-      const display = document.getElementById(`qty-${key}`);
-      if (display) display.innerText = updated;
-
-      updateSummary();
-    }
-
-    function updateSummary() {
-      let totalQty = 0;
-      let totalPrice = 0;
-
-      menuData.forEach(item => {
-        item.portions.forEach(p => {
-          const count = cart[p.key] || 0;
-          if (count > 0) {
-            totalQty += count;
-            totalPrice += count * p.price;
-          }
-        });
-      });
-
-      document.getElementById("item-count").innerText = `${totalQty} টি আইটেম`;
-      document.getElementById("total-price").innerText = `₹${totalPrice}`;
-      document.getElementById("order-btn").disabled = totalQty === 0;
-    }
-
-    function sendWhatsAppOrder() {
-      const name = document.getElementById("cust-name").value.trim() || "গ্রাহক (Customer)";
-      const detail = document.getElementById("cust-detail").value.trim() || "Not specified";
-
-      let itemsText = "";
-      let grandTotal = 0;
-
-      menuData.forEach(item => {
-        item.portions.forEach(p => {
-          const count = cart[p.key] || 0;
-          if (count > 0) {
-            const cost = count * p.price;
-            grandTotal += cost;
-            itemsText += `• ${item.name} (${p.label}) x ${count} = ₹${cost}\n`;
-          }
-        });
-      });
-
-      const message = `🥟 *রিতা মোমো মার্ট - নতুন অর্ডার* 🥟\n` +
-                      `━━━━━━━━━━━━━━━━\n` +
-                      `👤 *নাম:* ${name}\n` +
-                      `📍 *টেবিল/ফোন:* ${detail}\n` +
-                      `━━━━━━━━━━━━━━━━\n` +
-                      `📋 *অর্ডার লিস্ট:*\n${itemsText}` +
-                      `━━━━━━━━━━━━━━━━\n` +
-                      `💰 *মোট বিল:* ₹${grandTotal}\n\n` +
-                      `দয়া করে অর্ডারটি কনফার্ম করুন!`;
-
-      const encoded = encodeURIComponent(message);
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, "_blank");
-    }
-
-    renderMenu("all");
-  </script>
-</body>
-  </html>
-  
