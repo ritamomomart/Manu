@@ -1066,7 +1066,31 @@
       </a>
     </section>
 
-  </div>
+  </div> <!-- /container -->
+
+  <!-- Professional Footer -->
+  <footer style="background: #161616; color: #b0b0b0; padding: 40px 16px 30px; margin-top: 50px; border-top: 3px solid var(--primary); text-align: center;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h3 style="color: #fff; font-size: 1.4rem; margin-bottom: 6px;">🥟 রীতা মোমো মার্ট</h3>
+      <p style="font-size: 0.9rem; color: #888; margin-bottom: 16px;">খাঁটি স্বাদ ও স্বাস্থ্যকর ফাস্টফুডের বিশ্বস্ত ঠিকানা • নারায়ণপুর মিল মোড়, বুনিয়াদপুর</p>
+      
+      <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; font-size: 0.92rem;">
+        <a href="#menu" style="color: #ddd; text-decoration: none;">মেনু</a>
+        <a href="#about" style="color: #ddd; text-decoration: none;">আমাদের সম্পর্কে</a>
+        <a href="https://maps.app.goo.gl/AxpKtAtTFicX6jmo7" target="_blank" rel="noopener noreferrer" style="color: #ddd; text-decoration: none;">গুগল ম্যাপস</a>
+        <a href="tel:8383923530" style="color: var(--secondary); text-decoration: none; font-weight: 600;">📞 কল করুন: 8383923530</a>
+      </div>
+
+      <hr style="border: none; border-top: 1px solid #2a2a2a; margin-bottom: 20px;">
+
+      <p style="font-size: 0.88rem; color: #aaa; margin-bottom: 6px;">
+        © 2026 <strong>Rita Momo Mart</strong>. All Rights Reserved.
+      </p>
+      <p style="font-size: 0.82rem; color: #666;">
+        Designed & Developed with ❤️ by <strong>Martuja Siddik</strong>
+      </p>
+    </div>
+  </footer>
 
   <!-- Bottom Floating Cart Bar -->
   <div class="cart-bar" id="cartBar">
@@ -1221,7 +1245,6 @@
       var customerName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "গ্রাহক (Customer)";
       var tablePhone = (tableInput && tableInput.value.trim()) ? tableInput.value.trim() : "Not specified";
 
-      // আপনার চাওয়া অনুযায়ী টাইটেল ও হেডার
       var msg = "🥟 *Rita Momo Mart* 🥟\n";
       msg += "🍴 *নতুন অর্ডার* 🍴\n";
       msg += "━━━━━━━━━━━━━━━━━━━━\n\n";
@@ -1231,7 +1254,6 @@
       msg += "📋 *অর্ডার লিস্ট:*\n";
 
       var total = 0;
-      // ডটের বদলে ১, ২, ৩ ক্রমিক নম্বর
       keys.forEach(function(name, index) {
         var item = cart[name];
         var sub = item.price * item.qty;
