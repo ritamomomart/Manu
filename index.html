@@ -33,7 +33,7 @@
       background: #fafafa;
       color: var(--dark);
       line-height: 1.5;
-      padding-bottom: 110px;
+      padding-bottom: 120px;
     }
 
     /* Notice Bar */
@@ -371,7 +371,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      max-height: 80vh;
+      max-height: 85vh;
       background: #fff;
       border-radius: 18px 18px 0 0;
       box-shadow: 0 -8px 30px rgba(0,0,0,0.3);
@@ -452,8 +452,44 @@
       cursor: pointer;
     }
 
+    .cust-fields {
+      padding: 12px 16px;
+      background: #fbfbfb;
+      border-top: 1px solid var(--border);
+    }
+
+    .cust-field-group {
+      margin-bottom: 8px;
+    }
+
+    .cust-field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .cust-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #333;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .cust-input {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.92rem;
+      outline: none;
+      background: #fff;
+    }
+
+    .cust-input:focus {
+      border-color: var(--primary);
+    }
+
     .cart-footer {
-      padding: 16px;
+      padding: 14px 16px;
       background: #f8f9fa;
       border-top: 1px solid var(--border);
     }
@@ -463,7 +499,7 @@
       justify-content: space-between;
       font-size: 1.2rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .whatsapp-order-btn {
@@ -471,7 +507,7 @@
       background: #25d366;
       color: #fff;
       border: none;
-      padding: 14px;
+      padding: 13px;
       border-radius: 8px;
       font-weight: 700;
       font-size: 1.05rem;
@@ -493,10 +529,12 @@
 </head>
 <body>
 
+  <!-- Announcement Notice -->
   <div class="notice-bar">
     ⚠️ প্রতি রবিবার বন্ধ থাকে (Sunday Closed) | হোম ডেলিভারি ও পার্সেল সার্ভিস উপলব্ধ
   </div>
 
+  <!-- Header -->
   <header>
     <div class="header-wrap">
       <div class="brand-box">
@@ -514,6 +552,7 @@
     </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
     <h1>সুস্বাদু ও গরম গরম ফাস্টফুড</h1>
     <p>মোমো, রোল, চাউমিন, পাকোড়া ও স্পেশাল আইটেম সরাসরি অর্ডার করুন আপনার প্রিয় রীতা মোমো মার্ট থেকে।</p>
@@ -525,6 +564,7 @@
   </section>
 
   <div class="container">
+    <!-- Category Navigation -->
     <div class="category-nav" id="menu">
       <a class="cat-btn active" href="#momos">🥟 মোমো (Momos)</a>
       <a class="cat-btn" href="#pakoda">🍟 পাকোড়া (Pakoda)</a>
@@ -1048,9 +1088,23 @@
       <div class="cart-title">🛍️ আপনার অর্ডার তালিকা</div>
       <button class="close-cart" onclick="closeCart()">&times;</button>
     </div>
+    
     <div class="cart-items-list" id="cartItemsList">
-      <!-- Items dynamically injected -->
+      <!-- Dynamically injected items -->
     </div>
+
+    <!-- Customer Details Form -->
+    <div class="cust-fields">
+      <div class="cust-field-group">
+        <label class="cust-label" for="custName">👤 গ্রাহকের নাম (Customer Name):</label>
+        <input class="cust-input" type="text" id="custName" placeholder="যেমন: রাহুল / রানা">
+      </div>
+      <div class="cust-field-group">
+        <label class="cust-label" for="custTable">📍 টেবিল নম্বর বা ফোন নম্বর (Table / Phone):</label>
+        <input class="cust-input" type="text" id="custTable" placeholder="যেমন: Table 2 অথবা পার্সেল / মোবাইল নম্বর">
+      </div>
+    </div>
+
     <div class="cart-footer">
       <div class="cart-total-row">
         <span>মোট মূল্য (Total):</span>
@@ -1072,7 +1126,6 @@
         cart[itemName].qty += 1;
       }
 
-      // বাটনে তাৎক্ষণিক অ্যাকশন অ্যানিমেশন
       if (btnElement) {
         var originalText = btnElement.innerText;
         btnElement.innerText = "✓ যোগ হয়েছে";
@@ -1162,17 +1215,32 @@
       var keys = Object.keys(cart);
       if (keys.length === 0) return;
 
-      var msg = "নমস্কার Rita Momo Mart, আমি একটি নতুন অর্ডার দিতে চাই:\n\n";
+      var nameInput = document.getElementById('custName');
+      var tableInput = document.getElementById('custTable');
+
+      var customerName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "গ্রাহক (Customer)";
+      var tablePhone = (tableInput && tableInput.value.trim()) ? tableInput.value.trim() : "Not specified";
+
+      // আপনার চাওয়া অনুযায়ী প্রথম লাইন: Rita Momo Mart, পরের লাইন: নতুন অর্ডার
+      var msg = "🥟 *Rita Momo Mart* 🥟\n";
+      msg += "*নতুন অর্ডার* 🥟\n";
+      msg += "━━━━━━━━━━━━━━━━━━━━\n\n";
+      msg += "👤 *নাম:* " + customerName + "\n";
+      msg += "📍 *টেবিল/ফোন:* " + tablePhone + "\n\n";
+      msg += "━━━━━━━━━━━━━━━━━━━━\n\n";
+      msg += "📋 *অর্ডার লিস্ট:*\n";
+
       var total = 0;
-      keys.forEach(function(name, i) {
+      keys.forEach(function(name) {
         var item = cart[name];
         var sub = item.price * item.qty;
         total += sub;
-        msg += (i + 1) + ". " + name + " - " + item.qty + " টি (₹" + sub + ")\n";
+        msg += "• " + name + " × " + item.qty + " = ₹" + sub + "\n";
       });
 
-      msg += "\nমোট বিল: ₹" + total;
-      msg += "\nঠিকানা/পিকআপ: নারায়ণপুর মিল মোড়";
+      msg += "\n━━━━━━━━━━━━━━━━━━━━\n";
+      msg += "💰 *মোট বিল:* ₹" + total + "\n\n";
+      msg += "দয়া করে অর্ডারটি কনফার্ম করুন!";
 
       var phone = "919485949685";
       var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
