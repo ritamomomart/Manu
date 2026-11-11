@@ -71,11 +71,26 @@
       gap: 10px;
     }
 
-    .brand-logo {
+    .brand-logo-img {
       width: 44px;
       height: 44px;
       object-fit: contain;
       border-radius: 8px;
+      display: block;
+    }
+
+    .brand-logo-fallback {
+      width: 44px;
+      height: 44px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      border: 2px solid var(--secondary);
     }
 
     .brand-title {
@@ -100,7 +115,7 @@
 
     /* Hero */
     .hero {
-      background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.85)), url('images/hero-bg.png') center/cover;
+      background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.85)), url('hero-bg.png') center/cover, url('images/hero-bg.png') center/cover;
       background-color: #222;
       color: #fff;
       text-align: center;
@@ -534,11 +549,12 @@
     ⚠️ প্রতি রবিবার বন্ধ থাকে (Sunday Closed) | হোম ডেলিভারি ও পার্সেল সার্ভিস উপলব্ধ
   </div>
 
-  <!-- Header -->
+  <!-- Header with Smart Logo Handler -->
   <header>
     <div class="header-wrap">
       <div class="brand-box">
-        <img class="brand-logo" src="images/logo.png" alt="Logo" onerror="this.style.display='none'">
+        <img class="brand-logo-img" src="logo.png" alt="Logo" onerror="this.onerror=null; this.src='images/logo.png'; this.onerror=function(){this.style.display='none'; document.getElementById('logoFallbackHeader').style.display='flex';};">
+        <div id="logoFallbackHeader" class="brand-logo-fallback">RM</div>
         <div>
           <div class="brand-title">রীতা মোমো মার্ট</div>
           <div class="brand-subtitle">নারায়নপুর মিল মোড়, বুনিয়াদপুর</div>
@@ -579,7 +595,7 @@
       <!-- Veg Steam -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/veg-steam-momo.png" alt="Veg Steam Momos" onerror="this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/veg-steam-momo.png" alt="Veg Steam Momos" onerror="this.src='veg-steam-momo.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Veg Steam Momos</div>
@@ -602,7 +618,7 @@
       <!-- Veg Fried -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/veg-fried-momo.png" alt="Veg Fried Momos" onerror="this.src='https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/veg-fried-momo.png" alt="Veg Fried Momos" onerror="this.src='veg-fried-momo.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Veg Fried Momos</div>
@@ -625,7 +641,7 @@
       <!-- Veg Kurkure -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/veg-kurkure-momo.png" alt="Veg Kurkure Momos" onerror="this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/veg-kurkure-momo.png" alt="Veg Kurkure Momos" onerror="this.src='veg-kurkure-momo.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Veg Kurkure Momos</div>
@@ -648,7 +664,7 @@
       <!-- Chicken Steam -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/chicken-steam-momo.png" alt="Chicken Steam Momos" onerror="this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/chicken-steam-momo.png" alt="Chicken Steam Momos" onerror="this.src='chicken-steam-momo.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Chicken Steam Momos</div>
@@ -671,7 +687,7 @@
       <!-- Chicken Fried -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/chicken-fried-momo.png" alt="Chicken Fried Momos" onerror="this.src='https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/chicken-fried-momo.png" alt="Chicken Fried Momos" onerror="this.src='chicken-fried-momo.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Chicken Fried Momos</div>
@@ -694,7 +710,7 @@
       <!-- Chicken Kurkure -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/chicken-kurkure-momo.png" alt="Chicken Kurkure Momos" onerror="this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/chicken-kurkure-momo.png" alt="Chicken Kurkure Momos" onerror="this.src='chicken-kurkure-momo.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Chicken Kurkure Momos</div>
@@ -717,7 +733,7 @@
       <!-- Chicken Tandoori -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/chicken-tandoori-momo.png" alt="Chicken Tandoori Momos" onerror="this.src='https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/chicken-tandoori-momo.png" alt="Chicken Tandoori Momos" onerror="this.src='chicken-tandoori-momo.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Chicken Tandoori Momos</div>
@@ -746,7 +762,7 @@
       <!-- Egg Chop -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/egg-chop.png" alt="Egg Chop" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/egg-chop.png" alt="Egg Chop" onerror="this.src='egg-chop.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Egg Chop (ডিম চপ)</div>
@@ -764,7 +780,7 @@
       <!-- Piyaji -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/piyaji-pakoda.png" alt="Piyaji Pakoda" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/piyaji-pakoda.png" alt="Piyaji Pakoda" onerror="this.src='piyaji-pakoda.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Piyaji / Pakoda (পিয়াজি)</div>
@@ -782,7 +798,7 @@
       <!-- Aloo Chop -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/aloo-chop.png" alt="Aloo Chop" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/aloo-chop.png" alt="Aloo Chop" onerror="this.src='aloo-chop.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Aloo Chop (আলু চপ)</div>
@@ -800,7 +816,7 @@
       <!-- Beguni -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/beguni.png" alt="Beguni Chop" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/beguni.png" alt="Beguni Chop" onerror="this.src='beguni.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Beguni (বেগুনি)</div>
@@ -824,7 +840,7 @@
       <!-- Burger -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/burger-aloo-tikki.png" alt="Burger Aloo Tikki" onerror="this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/burger-aloo-tikki.png" alt="Burger Aloo Tikki" onerror="this.src='burger-aloo-tikki.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Burger (Aloo Tikki)</div>
@@ -847,7 +863,7 @@
       <!-- Egg Roll -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/egg-roll.png" alt="Egg Roll" onerror="this.src='https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/egg-roll.png" alt="Egg Roll" onerror="this.src='egg-roll.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Egg Roll</div>
@@ -870,7 +886,7 @@
       <!-- Egg Chowmin -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/egg-chowmin.png" alt="Egg Chowmin" onerror="this.src='https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/egg-chowmin.png" alt="Egg Chowmin" onerror="this.src='egg-chowmin.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Egg Chowmin</div>
@@ -893,7 +909,7 @@
       <!-- Egg Omelette -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/egg-omelette.png" alt="Egg Omelette" onerror="this.src='https://images.unsplash.com/photo-1525351484163-7529414344d8?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/egg-omelette.png" alt="Egg Omelette" onerror="this.src='egg-omelette.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Egg Omelette</div>
@@ -916,7 +932,7 @@
       <!-- Egg Poached -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/egg-poached.png" alt="Egg Poached" onerror="this.src='https://images.unsplash.com/photo-1525351484163-7529414344d8?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/egg-poached.png" alt="Egg Poached" onerror="this.src='egg-poached.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Egg Poached (ডিম পোচ)</div>
@@ -939,7 +955,7 @@
       <!-- Boiled Egg -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/boiled-egg.png" alt="Boiled Egg" onerror="this.src='https://images.unsplash.com/photo-1525351484163-7529414344d8?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/boiled-egg.png" alt="Boiled Egg" onerror="this.src='boiled-egg.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Boiled Egg (সেদ্ধ ডিম)</div>
@@ -968,7 +984,7 @@
       <!-- Water -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/water-bottle.png" alt="Packaged Drinking Water" onerror="this.src='https://images.unsplash.com/photo-1559839914-173ef29c2eb5?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/water-bottle.png" alt="Packaged Drinking Water" onerror="this.src='water-bottle.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Packaged Water</div>
@@ -991,7 +1007,7 @@
       <!-- Mix Veg Soup -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/mix-veg-soup.png" alt="Mix Veg Soup" onerror="this.src='https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/mix-veg-soup.png" alt="Mix Veg Soup" onerror="this.src='mix-veg-soup.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Mix Veg Soup</div>
@@ -1009,7 +1025,7 @@
       <!-- Veg Spring Roll -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/veg-spring-roll.png" alt="Veg Spring Roll" onerror="this.src='https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/veg-spring-roll.png" alt="Veg Spring Roll" onerror="this.src='veg-spring-roll.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Veg Spring Roll</div>
@@ -1027,7 +1043,7 @@
       <!-- Soya 65 -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/soya-65.png" alt="Soya 65" onerror="this.src='https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500&auto=format&fit=crop&q=60'">
+          <img class="food-img" src="images/soya-65.png" alt="Soya 65" onerror="this.src='soya-65.png';">
         </div>
         <div class="food-body">
           <div class="food-name">Soya 65</div>
@@ -1071,7 +1087,10 @@
   <!-- Professional Footer -->
   <footer style="background: #161616; color: #b0b0b0; padding: 40px 16px 30px; margin-top: 50px; border-top: 3px solid var(--primary); text-align: center;">
     <div style="max-width: 900px; margin: 0 auto;">
-      <h3 style="color: #fff; font-size: 1.4rem; margin-bottom: 6px;">🥟 রীতা মোমো মার্ট</h3>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+        <img src="logo.png" alt="Logo" style="width: 32px; height: 32px; object-fit: contain; border-radius: 6px;" onerror="this.onerror=null; this.src='images/logo.png'; this.onerror=function(){this.style.display='none';};">
+        <h3 style="color: #fff; font-size: 1.4rem;">রীতা মোমো মার্ট</h3>
+      </div>
       <p style="font-size: 0.9rem; color: #888; margin-bottom: 16px;">খাঁটি স্বাদ ও স্বাস্থ্যকর ফাস্টফুডের বিশ্বস্ত ঠিকানা • নারায়ণপুর মিল মোড়, বুনিয়াদপুর</p>
       
       <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; font-size: 0.92rem;">
