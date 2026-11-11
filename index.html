@@ -1235,7 +1235,7 @@
         var item = cart[name];
         var sub = item.price * item.qty;
         total += sub;
-        msg += "• " + name + " × " + item.qty + " = ₹" + sub + "\n";
+        msg += (index + 1) + ". " + name + " × " + item.qty + " = ₹" + sub + "\n";
       });
 
       msg += "\n━━━━━━━━━━━━━━━━━━━━\n";
