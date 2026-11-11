@@ -562,90 +562,6 @@
       <!-- Veg Fried -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/veg-fried-momo.png" alt="Veg Fried Momos" onerror="this.src='
-one;
-    }
-
-    .backdrop.active {
-      display: block;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Notice -->
-  <div class="notice-bar">
-    ⚠️ প্রতি রবিবার বন্ধ থাকে (Sunday Closed) | হোম ডেলিভারি ও পার্সেল সার্ভিস উপলব্ধ
-  </div>
-
-  <!-- Header -->
-  <header>
-    <div class="header-wrap">
-      <div class="brand-box">
-        <img class="brand-logo" src="images/logo.png" alt="Logo" onerror="this.style.display='none'">
-        <div>
-          <div class="brand-title">রীতা মোমো মার্ট</div>
-          <div class="brand-subtitle">নারায়নপুর মিল মোড়, বুনিয়াদপুর</div>
-        </div>
-      </div>
-      <nav class="nav-links">
-        <a href="#menu">মেনু</a>
-        <a href="#about">আমাদের সম্পর্কে</a>
-        <a href="#location">লোকেশন</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>সুস্বাদু ও গরম গরম ফাস্টফুড</h1>
-    <p>মোমো, রোল, চাউমিন, পাকোড়া ও স্পেশাল আইটেম সরাসরি অর্ডার করুন আপনার প্রিয় রীতা মোমো মার্ট থেকে।</p>
-    <div class="hero-badges">
-      <span class="badge">🔥 ১০০% ফ্রেশ প্রস্তুতি</span>
-      <span class="badge">🛵 দ্রুত ডেলিভারি</span>
-      <span class="badge">🚫 প্রতি রবিবার বন্ধ</span>
-    </div>
-  </section>
-
-  <div class="container">
-    <!-- Category Tabs -->
-    <div class="category-nav" id="menu">
-      <a class="cat-btn active" href="#momos">🥟 মোমো (Momos)</a>
-      <a class="cat-btn" href="#pakoda">🍟 পাকোড়া (Pakoda)</a>
-      <a class="cat-btn" href="#chow-burger">🍔 চাউমিন ও রোল</a>
-      <a class="cat-btn" href="#other">🥤 অন্যান্য (Other)</a>
-    </div>
-
-    <!-- 1. MOMOS -->
-    <h2 class="section-title" id="momos">🥟 MOMOS (Half – 5 Pcs | Full – 10 Pcs)</h2>
-    <div class="menu-grid">
-      
-      <!-- Veg Steam -->
-      <div class="food-card">
-        <div class="food-img-wrap">
-          <img class="food-img" src="images/veg-steam-momo.png" alt="Veg Steam Momos" onerror="this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&auto=format&fit=crop&q=60'">
-        </div>
-        <div class="food-body">
-          <div class="food-name">Veg Steam Momos</div>
-          <div class="food-meta">ফ্রেশ সবজি ও মশলায় মোড়া নরম ভাপা মোমো</div>
-          <div class="portions">
-            <div class="portion-row">
-              <span class="portion-title">Half (5 Pcs)</span>
-              <span class="portion-price">₹20</span>
-              <button class="add-btn" onclick="addToCart('Veg Steam Momos (Half)', 20)">+ যোগ করুন</button>
-            </div>
-            <div class="portion-row">
-              <span class="portion-title">Full (10 Pcs)</span>
-              <span class="portion-price">₹40</span>
-              <button class="add-btn" onclick="addToCart('Veg Steam Momos (Full)', 40)">+ যোগ করুন</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Veg Fried -->
-      <div class="food-card">
-        <div class="food-img-wrap">
           <img class="food-img" src="images/veg-fried-momo.png" alt="Veg Fried Momos" onerror="this.src='https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?w=500&auto=format&fit=crop&q=60'">
         </div>
         <div class="food-body">
@@ -655,12 +571,12 @@ one;
             <div class="portion-row">
               <span class="portion-title">Half (5 Pcs)</span>
               <span class="portion-price">₹25</span>
-              <button class="add-btn" onclick="addToCart('Veg Fried Momos (Half)', 25)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Veg Fried Momos (Half)', 25, this)">+ যোগ করুন</button>
             </div>
             <div class="portion-row">
               <span class="portion-title">Full (10 Pcs)</span>
               <span class="portion-price">₹50</span>
-              <button class="add-btn" onclick="addToCart('Veg Fried Momos (Full)', 50)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Veg Fried Momos (Full)', 50, this)">+ যোগ করুন</button>
             </div>
           </div>
         </div>
@@ -678,12 +594,12 @@ one;
             <div class="portion-row">
               <span class="portion-title">Half (5 Pcs)</span>
               <span class="portion-price">₹35</span>
-              <button class="add-btn" onclick="addToCart('Veg Kurkure Momos (Half)', 35)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Veg Kurkure Momos (Half)', 35, this)">+ যোগ করুন</button>
             </div>
             <div class="portion-row">
               <span class="portion-title">Full (10 Pcs)</span>
               <span class="portion-price">₹70</span>
-              <button class="add-btn" onclick="addToCart('Veg Kurkure Momos (Full)', 70)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Veg Kurkure Momos (Full)', 70, this)">+ যোগ করুন</button>
             </div>
           </div>
         </div>
@@ -701,12 +617,12 @@ one;
             <div class="portion-row">
               <span class="portion-title">Half (5 Pcs)</span>
               <span class="portion-price">₹30</span>
-              <button class="add-btn" onclick="addToCart('Chicken Steam Momos (Half)', 30)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Chicken Steam Momos (Half)', 30, this)">+ যোগ করুন</button>
             </div>
             <div class="portion-row">
               <span class="portion-title">Full (10 Pcs)</span>
               <span class="portion-price">₹60</span>
-              <button class="add-btn" onclick="addToCart('Chicken Steam Momos (Full)', 60)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Chicken Steam Momos (Full)', 60, this)">+ যোগ করুন</button>
             </div>
           </div>
         </div>
@@ -724,12 +640,12 @@ one;
             <div class="portion-row">
               <span class="portion-title">Half (5 Pcs)</span>
               <span class="portion-price">₹35</span>
-              <button class="add-btn" onclick="addToCart('Chicken Fried Momos (Half)', 35)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Chicken Fried Momos (Half)', 35, this)">+ যোগ করুন</button>
             </div>
             <div class="portion-row">
               <span class="portion-title">Full (10 Pcs)</span>
               <span class="portion-price">₹70</span>
-              <button class="add-btn" onclick="addToCart('Chicken Fried Momos (Full)', 70)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Chicken Fried Momos (Full)', 70, this)">+ যোগ করুন</button>
             </div>
           </div>
         </div>
@@ -747,12 +663,12 @@ one;
             <div class="portion-row">
               <span class="portion-title">Half (5 Pcs)</span>
               <span class="portion-price">₹40</span>
-              <button class="add-btn" onclick="addToCart('Chicken Kurkure Momos (Half)', 40)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Chicken Kurkure Momos (Half)', 40, this)">+ যোগ করুন</button>
             </div>
             <div class="portion-row">
               <span class="portion-title">Full (10 Pcs)</span>
               <span class="portion-price">₹80</span>
-              <button class="add-btn" onclick="addToCart('Chicken Kurkure Momos (Full)', 80)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Chicken Kurkure Momos (Full)', 80, this)">+ যোগ করুন</button>
             </div>
           </div>
         </div>
@@ -770,12 +686,12 @@ one;
             <div class="portion-row">
               <span class="portion-title">Half (5 Pcs)</span>
               <span class="portion-price">₹45</span>
-              <button class="add-btn" onclick="addToCart('Chicken Tandoori Momos (Half)', 45)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Chicken Tandoori Momos (Half)', 45, this)">+ যোগ করুন</button>
             </div>
             <div class="portion-row">
               <span class="portion-title">Full (10 Pcs)</span>
               <span class="portion-price">₹90</span>
-              <button class="add-btn" onclick="addToCart('Chicken Tandoori Momos (Full)', 90)">+ যোগ করুন</button>
+              <button class="add-btn" onclick="addToCart('Chicken Tandoori Momos (Full)', 90, this)">+ যোগ করুন</button>
             </div>
           </div>
         </div>
@@ -790,4 +706,478 @@ one;
       <!-- Egg Chop -->
       <div class="food-card">
         <div class="food-img-wrap">
-          <img class="food-img" src="images/egg-chop.png" alt="Egg Chop" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f7
+          <img class="food-img" src="images/egg-chop.png" alt="Egg Chop" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Egg Chop (ডিম চপ)</div>
+          <div class="food-meta">মশলাদার আলুর ভেতরে ডিমের চপ (প্রতি পিস)</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Per Piece</span>
+              <span class="portion-price">₹7</span>
+              <button class="add-btn" onclick="addToCart('Egg Chop', 7, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Piyaji -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/piyaji-pakoda.png" alt="Piyaji Pakoda" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Piyaji / Pakoda (পিয়াজি)</div>
+          <div class="food-meta">কুড়মুড়ে খাঁটি পেঁয়াজের পকোড়া</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Per 100g</span>
+              <span class="portion-price">₹20</span>
+              <button class="add-btn" onclick="addToCart('Piyaji / Pakoda (100g)', 20, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aloo Chop -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/aloo-chop.png" alt="Aloo Chop" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Aloo Chop (আলু চপ)</div>
+          <div class="food-meta">গরম গরম খাঁটি বাঙালি আলুর চপ</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Per Piece</span>
+              <span class="portion-price">₹5</span>
+              <button class="add-btn" onclick="addToCart('Aloo Chop', 5, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beguni -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/beguni.png" alt="Beguni Chop" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Beguni (বেগুনি)</div>
+          <div class="food-meta">বেসনে ভাজা মচমচে গরম বেগুনি</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Per Piece</span>
+              <span class="portion-price">₹5</span>
+              <button class="add-btn" onclick="addToCart('Beguni', 5, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3. CHOWMIN, BURGER & ROLL -->
+    <h2 class="section-title" id="chow-burger">🍔 CHOWMIN, BURGER & ROLL</h2>
+    <div class="menu-grid">
+      
+      <!-- Burger -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/burger-aloo-tikki.png" alt="Burger Aloo Tikki" onerror="this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Burger (Aloo Tikki)</div>
+          <div class="food-meta">সফট বানের সাথে স্পাইসি ক্রিস্পি আলুর টিক্কি</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Single Tikki</span>
+              <span class="portion-price">₹20</span>
+              <button class="add-btn" onclick="addToCart('Burger (Single Tikki)', 20, this)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Double Tikki</span>
+              <span class="portion-price">₹30</span>
+              <button class="add-btn" onclick="addToCart('Burger (Double Tikki)', 30, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Egg Roll -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/egg-roll.png" alt="Egg Roll" onerror="this.src='https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Egg Roll</div>
+          <div class="food-meta">পরোটার সাথে ডিম, পেঁয়াজ ও চাটনির সুস্বাদু রোল</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Single Egg</span>
+              <span class="portion-price">₹30</span>
+              <button class="add-btn" onclick="addToCart('Egg Roll (Single)', 30, this)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Double Egg</span>
+              <span class="portion-price">₹40</span>
+              <button class="add-btn" onclick="addToCart('Egg Roll (Double)', 40, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Egg Chowmin -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/egg-chowmin.png" alt="Egg Chowmin" onerror="this.src='https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Egg Chowmin</div>
+          <div class="food-meta">ফ্রেশ ডিম ও ভেজিটেবল সহযোগে চাওমিন</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Half Plate</span>
+              <span class="portion-price">₹20</span>
+              <button class="add-btn" onclick="addToCart('Egg Chowmin (Half)', 20, this)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Full Plate</span>
+              <span class="portion-price">₹40</span>
+              <button class="add-btn" onclick="addToCart('Egg Chowmin (Full)', 40, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Egg Omelette -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/egg-omelette.png" alt="Egg Omelette" onerror="this.src='https://images.unsplash.com/photo-1525351484163-7529414344d8?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Egg Omelette</div>
+          <div class="food-meta">পেঁয়াজ ও লঙ্কা দিয়ে তাওয়া ফ্রাইড অমলেট</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Single Egg</span>
+              <span class="portion-price">₹20</span>
+              <button class="add-btn" onclick="addToCart('Egg Omelette (Single)', 20, this)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Double Egg</span>
+              <span class="portion-price">₹30</span>
+              <button class="add-btn" onclick="addToCart('Egg Omelette (Double)', 30, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Egg Poached -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/egg-poached.png" alt="Egg Poached" onerror="this.src='https://images.unsplash.com/photo-1525351484163-7529414344d8?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Egg Poached (ডিম পোচ)</div>
+          <div class="food-meta">হালকা গোলমরিচ ছড়ানো গরম এগ পোচ</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Single Egg</span>
+              <span class="portion-price">₹15</span>
+              <button class="add-btn" onclick="addToCart('Egg Poached (Single)', 15, this)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Double Egg</span>
+              <span class="portion-price">₹25</span>
+              <button class="add-btn" onclick="addToCart('Egg Poached (Double)', 25, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Boiled Egg -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/boiled-egg.png" alt="Boiled Egg" onerror="this.src='https://images.unsplash.com/photo-1525351484163-7529414344d8?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Boiled Egg (সেদ্ধ ডিম)</div>
+          <div class="food-meta">পারফেক্ট ফ্রেশ বয়েল্ড ডিম স্পেশাল মশলাসহ</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Single Egg</span>
+              <span class="portion-price">₹15</span>
+              <button class="add-btn" onclick="addToCart('Boiled Egg (Single)', 15, this)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Double Egg</span>
+              <span class="portion-price">₹25</span>
+              <button class="add-btn" onclick="addToCart('Boiled Egg (Double)', 25, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 4. OTHER -->
+    <h2 class="section-title" id="other">🥤 OTHER (অন্যান্য)</h2>
+    <div class="menu-grid">
+      
+      <!-- Water -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/water-bottle.png" alt="Packaged Drinking Water" onerror="this.src='https://images.unsplash.com/photo-1559839914-173ef29c2eb5?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Packaged Water</div>
+          <div class="food-meta">বিশুদ্ধ ঠান্ডা ও নরমাল প্যাকেজড ড্রিংকিং ওয়াটার</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">500ml Bottle</span>
+              <span class="portion-price">₹10</span>
+              <button class="add-btn" onclick="addToCart('Water 500ml', 10, this)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">1 Litre Bottle</span>
+              <span class="portion-price">₹20</span>
+              <button class="add-btn" onclick="addToCart('Water 1 Litre', 20, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mix Veg Soup -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/mix-veg-soup.png" alt="Mix Veg Soup" onerror="this.src='https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Mix Veg Soup</div>
+          <div class="food-meta">গরম ও স্বাস্থ্যকর ভেজিটেবল স্যুপ</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Per Cup</span>
+              <span class="portion-price">₹5</span>
+              <button class="add-btn" onclick="addToCart('Mix Veg Soup', 5, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Veg Spring Roll -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/veg-spring-roll.png" alt="Veg Spring Roll" onerror="this.src='https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Veg Spring Roll</div>
+          <div class="food-meta">ক্রিস্পি ভেজ স্প্রিং রোল</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Per Piece</span>
+              <span class="portion-price">₹20</span>
+              <button class="add-btn" onclick="addToCart('Veg Spring Roll', 20, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soya 65 -->
+      <div class="food-card">
+        <div class="food-img-wrap">
+          <img class="food-img" src="images/soya-65.png" alt="Soya 65" onerror="this.src='https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500&auto=format&fit=crop&q=60'">
+        </div>
+        <div class="food-body">
+          <div class="food-name">Soya 65</div>
+          <div class="food-meta">মশলাদার ও মুচমুচে সোয়া ৬৫ ফ্রাই</div>
+          <div class="portions">
+            <div class="portion-row">
+              <span class="portion-title">Half Plate</span>
+              <span class="portion-price">₹20</span>
+              <button class="add-btn" onclick="addToCart('Soya 65 (Half)', 20, this)">+ যোগ করুন</button>
+            </div>
+            <div class="portion-row">
+              <span class="portion-title">Full Plate</span>
+              <span class="portion-price">₹40</span>
+              <button class="add-btn" onclick="addToCart('Soya 65 (Full)', 40, this)">+ যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- About Section -->
+    <section class="info-card" id="about">
+      <h3 class="info-title">আমাদের সম্পর্কে (About Us)</h3>
+      <p><strong>রীতা মোমো মার্ট (Rita Momo Mart)</strong> নারায়ণপুর মিল মোড়, বুনিয়াদপুরের একটি বিশ্বস্ত ফাস্টফুড শপ। আমরা প্রতিদিন টাটকা ও স্বাস্থ্যকর উপকরণ দিয়ে সব ধরনের মোমো, চাউমিন, পাকোড়া ও রোল তৈরি করে থাকি। পারিবারিক অনুষ্ঠান বা বন্ধুদের আড্ডার জন্য অগ্রিম অর্ডার নেওয়া হয়।</p>
+      <p style="margin-top: 10px; color: var(--primary-dark); font-weight: 600;">⚠️ সতর্কতা: আমাদের শপ প্রতি রবিবার সম্পূর্ণরূপে বন্ধ থাকে।</p>
+    </section>
+
+    <!-- Location Section -->
+    <section class="info-card" id="location">
+      <h3 class="info-title">আমাদের অবস্থান (Shop Location)</h3>
+      <p>📍 <strong>ঠিকানা:</strong> নারায়ণপুর মিল মোড়, বুনিয়াদপুর, পশ্চিমবঙ্গ (Narayanpur Mill More, Buniadpur)</p>
+      <p>⏰ <strong>সময়:</strong> সোমবার থেকে শনিবার (বিকাল ৪:০০ - রাত ৯:৩০) | <strong>রবিবার বন্ধ</strong></p>
+      <a class="map-btn" href="https://maps.app.goo.gl/AxpKtAtTFicX6jmo7" target="_blank" rel="noopener noreferrer">
+        📍 Google Maps-এ আমাদের লোকেশন দেখুন
+      </a>
+    </section>
+
+  </div>
+
+  <!-- Bottom Floating Cart Bar -->
+  <div class="cart-bar" id="cartBar">
+    <div class="cart-summary">
+      <span class="qty" id="cartItemCount">০ আইটেম</span>
+      <span class="total" id="cartBarTotal">₹০</span>
+    </div>
+    <button class="cart-action-btn" onclick="openCart()">
+      🛒 কার্ট দেখুন ও অর্ডার
+    </button>
+  </div>
+
+  <!-- Cart Modal Backdrop -->
+  <div class="backdrop" id="backdrop" onclick="closeCart()"></div>
+
+  <!-- Cart Drawer Modal -->
+  <div class="cart-modal" id="cartModal">
+    <div class="cart-header">
+      <div class="cart-title">🛍️ আপনার অর্ডার তালিকা</div>
+      <button class="close-cart" onclick="closeCart()">&times;</button>
+    </div>
+    <div class="cart-items-list" id="cartItemsList">
+      <!-- Items dynamically injected -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>মোট মূল্য (Total):</span>
+        <span id="modalTotal">₹০</span>
+      </div>
+      <button class="whatsapp-order-btn" onclick="checkoutWhatsApp()">
+        📲 WhatsApp এ অর্ডার পাঠান
+      </button>
+    </div>
+  </div>
+
+  <script>
+    var cart = {};
+
+    function addToCart(itemName, price, btnElement) {
+      if (!cart[itemName]) {
+        cart[itemName] = { price: price, qty: 1 };
+      } else {
+        cart[itemName].qty += 1;
+      }
+
+      // বাটনে তাৎক্ষণিক অ্যাকশন অ্যানিমেশন
+      if (btnElement) {
+        var originalText = btnElement.innerText;
+        btnElement.innerText = "✓ যোগ হয়েছে";
+        btnElement.classList.add('added');
+        setTimeout(function() {
+          btnElement.innerText = originalText;
+          btnElement.classList.remove('added');
+        }, 700);
+      }
+
+      renderCart();
+    }
+
+    function updateQty(itemName, delta) {
+      if (cart[itemName]) {
+        cart[itemName].qty += delta;
+        if (cart[itemName].qty <= 0) {
+          delete cart[itemName];
+        }
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      var itemsList = document.getElementById('cartItemsList');
+      var cartBar = document.getElementById('cartBar');
+      var countEl = document.getElementById('cartItemCount');
+      var barTotalEl = document.getElementById('cartBarTotal');
+      var modalTotalEl = document.getElementById('modalTotal');
+
+      if (!itemsList || !cartBar) return;
+
+      itemsList.innerHTML = '';
+      
+      var totalAmount = 0;
+      var totalCount = 0;
+      var keys = Object.keys(cart);
+
+      if (keys.length === 0) {
+        itemsList.innerHTML = '<p style="text-align: center; color: #888; padding: 24px;">আপনার কার্ট বর্তমানে খালি রয়েছে। মেনু থেকে খাবার পছন্দ করে যোগ করুন।</p>';
+      } else {
+        keys.forEach(function(name) {
+          var item = cart[name];
+          var subtotal = item.price * item.qty;
+          totalAmount += subtotal;
+          totalCount += item.qty;
+
+          var row = document.createElement('div');
+          row.className = 'cart-item-row';
+          row.innerHTML = 
+            '<div>' +
+              '<div class="cart-item-title">' + name + '</div>' +
+              '<div class="cart-item-price">₹' + item.price + ' &times; ' + item.qty + ' = ₹' + subtotal + '</div>' +
+            '</div>' +
+            '<div class="cart-item-ctrls">' +
+              '<button class="qty-btn" onclick="updateQty(\'' + name.replace(/'/g, "\\'") + '\', -1)">-</button>' +
+              '<span style="font-weight: 700; min-width: 18px; text-align: center;">' + item.qty + '</span>' +
+              '<button class="qty-btn" onclick="updateQty(\'' + name.replace(/'/g, "\\'") + '\', 1)">+</button>' +
+            '</div>';
+          itemsList.appendChild(row);
+        });
+      }
+
+      countEl.innerText = totalCount + ' টি আইটেম';
+      barTotalEl.innerText = '₹' + totalAmount;
+      modalTotalEl.innerText = '₹' + totalAmount;
+
+      if (totalCount > 0) {
+        cartBar.classList.add('active');
+      } else {
+        cartBar.classList.remove('active');
+        closeCart();
+      }
+    }
+
+    function openCart() {
+      document.getElementById('cartModal').classList.add('open');
+      document.getElementById('backdrop').classList.add('active');
+    }
+
+    function closeCart() {
+      document.getElementById('cartModal').classList.remove('open');
+      document.getElementById('backdrop').classList.remove('active');
+    }
+
+    function checkoutWhatsApp() {
+      var keys = Object.keys(cart);
+      if (keys.length === 0) return;
+
+      var msg = "নমস্কার Rita Momo Mart, আমি একটি নতুন অর্ডার দিতে চাই:\n\n";
+      var total = 0;
+      keys.forEach(function(name, i) {
+        var item = cart[name];
+        var sub = item.price * item.qty;
+        total += sub;
+        msg += (i + 1) + ". " + name + " - " + item.qty + " টি (₹" + sub + ")\n";
+      });
+
+      msg += "\nমোট বিল: ₹" + total;
+      msg += "\nঠিকানা/পিকআপ: নারায়ণপুর মিল মোড়";
+
+      var phone = "919485949685";
+      var url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
